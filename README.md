@@ -15,7 +15,7 @@ Tagline Pendukung:
 
 🌌 Filosofi: "Keyboard Induk" yang Mengarungi Semesta
 
-Ibarat sebuah Kapal Induk di Lautan Samudera luas,SONIC20VERSE adalah "Kapal Induk" di lautan musik — bukan sekadar keyboard biasa, tapi platform raksasa yang:
+Ibarat sebuah Kapal Induk di Lautan Samudera luas, SONIC20VERSE adalah "Kapal Induk" di lautan musik — bukan sekadar keyboard biasa, tapi platform raksasa yang:
 
 · 🌊 Mengarungi samudra musik dari tradisi ke futuristik
 · 🌏 Berlayar antar benua dari ASEAN ke dunia
