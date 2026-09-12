@@ -1,1 +1,90 @@
-gg
+/* ============================================================
+   keyboard.css - Keyboard Styles
+   SONIC20VERSE
+   ============================================================ */
+
+#keyboard-container {
+    background: var(--bg-card);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    padding: 0.5rem;
+    overflow-x: auto;
+    min-height: 200px;
+}
+
+#keyboard {
+    display: flex !important;
+    gap: 2px;
+    padding: 4px;
+    min-width: max-content;
+    background: #1a1a2e;
+    border-radius: 10px;
+    border: 2px solid #2a3a5e;
+    margin: 0 auto;
+    min-height: 170px;
+    align-items: flex-end;
+}
+
+.key {
+    cursor: pointer;
+    transition: all 0.08s ease;
+    user-select: none;
+    position: relative;
+    touch-action: manipulation;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.key-white {
+    flex: 0 0 30px;
+    height: 140px;
+    background: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 0 0 6px 6px;
+    padding-bottom: 8px;
+    z-index: 1;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.key-white:hover { background: #ffffff; border-color: #999; }
+.key-white.active {
+    background: #ffd700 !important;
+    transform: scale(0.95);
+    box-shadow: 0 0 30px rgba(255,215,0,0.5);
+    border-color: #f5a623;
+}
+
+.key-black {
+    flex: 0 0 18px;
+    height: 85px;
+    background: #222;
+    border: 1px solid #111;
+    border-radius: 0 0 6px 6px;
+    padding-bottom: 4px;
+    margin-left: -9px;
+    margin-right: -9px;
+    z-index: 2;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+}
+
+.key-black:hover { background: #333; border-color: #444; }
+.key-black.active {
+    background: #ffd700 !important;
+    transform: scale(0.95);
+    box-shadow: 0 0 30px rgba(255,215,0,0.5);
+    border-color: #f5a623;
+}
+
+.key-label {
+    font-size: 0.5rem;
+    color: #333;
+    pointer-events: none;
+    text-align: center;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.key-black .key-label { color: #888; font-size: 0.45rem; }
+.key-white .key-label { color: #333; font-size: 0.5rem; }
