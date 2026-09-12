@@ -12,171 +12,92 @@
 </head>
 <body>
     <!-- ============================================ -->
-<!-- LANDING PAGE - Halaman Awal                  -->
-<!-- ============================================ -->
-<div id="landing-page" class="landing-page">
-    <div class="landing-content">
-        <div class="landing-logo-container">
-            <svg class="landing-logo" viewBox="0 0 200 200">
-                <defs>
-                    <linearGradient id="lblueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style="stop-color:#0F3460" />
-                        <stop offset="100%" style="stop-color:#2196F3" />
-                    </linearGradient>
-                    <linearGradient id="lgreenGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style="stop-color:#2E7D32" />
-                        <stop offset="100%" style="stop-color:#4CAF50" />
-                    </linearGradient>
-                    <linearGradient id="lmagentaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style="stop-color:#C2185B" />
-                        <stop offset="100%" style="stop-color:#E91E63" />
-                    </linearGradient>
-                </defs>
+    <!-- LANDING PAGE - Sederhana                     -->
+    <!-- ============================================ -->
+    <div id="landing-page" class="landing-page">
+        <div class="landing-content">
+            <div class="landing-logo-container">
+                <svg class="landing-logo" viewBox="0 0 200 200">
+                    <defs>
+                        <linearGradient id="lblueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#0F3460" />
+                            <stop offset="100%" style="stop-color:#2196F3" />
+                        </linearGradient>
+                        <linearGradient id="lgreenGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#2E7D32" />
+                            <stop offset="100%" style="stop-color:#4CAF50" />
+                        </linearGradient>
+                        <linearGradient id="lmagentaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#C2185B" />
+                            <stop offset="100%" style="stop-color:#E91E63" />
+                        </linearGradient>
+                    </defs>
+                    <path d="M 120 60 C 160 60, 180 90, 150 130 C 120 170, 60 160, 30 120 C 10 90, 30 50, 60 40" 
+                          fill="none" stroke="#0F3460" stroke-width="12" stroke-linecap="round" />
+                    <polygon points="50,60 90,140 10,140" fill="url(#lblueGrad)" />
+                    <rect x="80" y="70" width="70" height="70" rx="15" fill="url(#lgreenGrad)" />
+                    <circle cx="145" cy="135" r="40" fill="url(#lmagentaGrad)" />
+                </svg>
+            </div>
+            <h1 class="landing-title">SONIC20VERSE</h1>
+            <p class="landing-tagline">20 NADA MENGGEMA DI SEMESTA</p>
+            <p class="landing-subtitle">20-NOTE MICROTONAL ECOSYSTEM · ARRANGER KEYBOARD</p>
+            <p class="landing-description">
+                Kapal Induk Musik Mikrotonal Pertama di Dunia<br>
+                Powered by Multi-Agent AI for Musicians
+            </p>
+            <button id="btnMulai" class="landing-btn">🚀 MULAI</button>
+            <p class="landing-version">v2.0.0 · SONIC20VERSE Edition</p>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- SPLASH SCREEN                                -->
+    <!-- ============================================ -->
+    <div id="splash-screen" class="splash-screen">
+        <div class="splash-content">
+            <svg class="splash-logo" viewBox="0 0 200 200">
                 <path d="M 120 60 C 160 60, 180 90, 150 130 C 120 170, 60 160, 30 120 C 10 90, 30 50, 60 40" 
                       fill="none" stroke="#0F3460" stroke-width="12" stroke-linecap="round" />
                 <polygon points="50,60 90,140 10,140" fill="url(#lblueGrad)" />
                 <rect x="80" y="70" width="70" height="70" rx="15" fill="url(#lgreenGrad)" />
                 <circle cx="145" cy="135" r="40" fill="url(#lmagentaGrad)" />
             </svg>
+            <h1 class="splash-title">SONIC20VERSE</h1>
+            <p class="splash-tagline">20 Nada Menggema di Semesta</p>
+            <p class="splash-sub">20-Note Microtonal Ecosystem · Multi-Agent AI</p>
+            <div class="splash-loader"><div class="loader-bar" id="loaderBar"></div></div>
+            <p class="splash-version">v2.0.0</p>
         </div>
-        <h1 class="landing-title">SONIC20VERSE</h1>
-        <p class="landing-tagline">20 NADA MENGGEMA DI SEMESTA</p>
-        <p class="landing-subtitle">20-NOTE MICROTONAL ECOSYSTEM · ARRANGER KEYBOARD</p>
-        <p class="landing-description">
-            Kapal Induk Musik Mikrotonal Pertama di Dunia<br>
-            Powered by Multi-Agent AI for Musicians
-        </p>
-        
-        <!-- POWER BUTTON - BARU! -->
-        <div class="power-button-container">
-            <button id="btnPowerOn" class="power-button" title="Tekan untuk menyalakan">
-                <div class="power-icon">
-                    <svg viewBox="0 0 24 24" width="48" height="48">
-                        <path d="M12 2 L12 12 M12 12 L8 8 M12 12 L16 8" 
-                              stroke="currentColor" stroke-width="2.5" 
-                              stroke-linecap="round" fill="none"/>
-                        <circle cx="12" cy="14" r="8" 
-                                stroke="currentColor" stroke-width="2.5" 
-                                fill="none"/>
-                    </svg>
-                </div>
-                <span class="power-text">POWER</span>
-                <div class="power-led"></div>
-            </button>
-            <p class="power-hint">Tekan tombol POWER untuk menyalakan SONIC20VERSE</p>
-        </div>
-        
-        <p class="landing-version">v2.0.0 · SONIC20VERSE Edition</p>
     </div>
-</div>
 
-<!-- ============================================ -->
-<!-- BOOT SCREEN - Proses Booting (BARU!)        -->
-<!-- ============================================ -->
-<div id="boot-screen" class="boot-screen">
-    <div class="boot-content">
-        <div class="boot-logo">
-            <svg viewBox="0 0 200 200" width="100" height="100">
-                <polygon points="50,60 90,140 10,140" fill="url(#lblueGrad)" />
-                <rect x="80" y="70" width="70" height="70" rx="15" fill="url(#lgreenGrad)" />
-                <circle cx="145" cy="135" r="40" fill="url(#lmagentaGrad)" />
-            </svg>
-        </div>
-        <h1 class="boot-title">SONIC20VERSE</h1>
-        <div class="boot-progress-container">
-            <div class="boot-progress-bar" id="bootProgressBar"></div>
-        </div>
-        <div class="boot-status" id="bootStatus">Initializing system...</div>
-        <div class="boot-log" id="bootLog"></div>
-    </div>
-</div>
-
-<!-- ============================================ -->
-<!-- HOME SCREEN - Layar Utama (BARU!)           -->
-<!-- ============================================ -->
-<div id="home-screen" class="home-screen">
-    <div class="home-content">
-        <div class="home-header">
-            <div class="home-logo">
-                <svg viewBox="0 0 200 200" width="60" height="60">
+    <!-- ============================================ -->
+    <!-- BOOT SCREEN - Muncul saat POWER ON          -->
+    <!-- ============================================ -->
+    <div id="boot-screen" class="boot-screen">
+        <div class="boot-content">
+            <div class="boot-logo">
+                <svg viewBox="0 0 200 200" width="100" height="100">
                     <polygon points="50,60 90,140 10,140" fill="url(#lblueGrad)" />
                     <rect x="80" y="70" width="70" height="70" rx="15" fill="url(#lgreenGrad)" />
                     <circle cx="145" cy="135" r="40" fill="url(#lmagentaGrad)" />
                 </svg>
             </div>
-            <h1 class="home-title">SONIC20VERSE</h1>
-            <p class="home-subtitle">20 Nada Menggema di Semesta</p>
-        </div>
-        
-        <div class="home-status">
-            <div class="status-row">
-                <span class="status-label">🎹 Keyboard:</span>
-                <span class="status-value">E2 - A7 (114 Tuts)</span>
+            <h1 class="boot-title">SONIC20VERSE</h1>
+            <div class="boot-progress-container">
+                <div class="boot-progress-bar" id="bootProgressBar"></div>
             </div>
-            <div class="status-row">
-                <span class="status-label">🎵 Tuning:</span>
-                <span class="status-value">A4 = 440 Hz · Rasio 3^(1/20)</span>
-            </div>
-            <div class="status-row">
-                <span class="status-label">🤖 AI:</span>
-                <span class="status-value ready">Ready</span>
-            </div>
-            <div class="status-row">
-                <span class="status-label">🎼 Style:</span>
-                <span class="status-value">Maqam Rast</span>
-            </div>
-            <div class="status-row">
-                <span class="status-label">🔊 Audio:</span>
-                <span class="status-value" id="audioStatus">Locked (Tap to unlock)</span>
-            </div>
-        </div>
-        
-        <div class="home-actions">
-            <button id="btnEnterStudio" class="home-btn primary">
-                🎹 MASUK STUDIO
-            </button>
-            <button id="btnQuickStart" class="home-btn secondary">
-                ⚡ QUICK START
-            </button>
-        </div>
-        
-        <div class="home-tips">
-            <p>💡 <strong>Tips:</strong> Klik tuts keyboard atau gunakan keyboard QWERTY (Q-W-E-R-T-Y)</p>
-        </div>
-        
-        <div class="home-footer">
-            <button id="btnPowerOff" class="power-off-btn">
-                ⏻ SHUTDOWN
-            </button>
-            <span class="home-version">v2.0.0</span>
+            <div class="boot-status" id="bootStatus">Initializing system...</div>
+            <div class="boot-log" id="bootLog"></div>
         </div>
     </div>
-</div>
-
-<!-- ============================================ -->
-<!-- SPLASH SCREEN (setelah Enter Studio)        -->
-<!-- ============================================ -->
-<div id="splash-screen" class="splash-screen">
-    <div class="splash-content">
-        <svg class="splash-logo" viewBox="0 0 200 200">
-            <path d="M 120 60 C 160 60, 180 90, 150 130 C 120 170, 60 160, 30 120 C 10 90, 30 50, 60 40" 
-                  fill="none" stroke="#0F3460" stroke-width="12" stroke-linecap="round" />
-            <polygon points="50,60 90,140 10,140" fill="url(#lblueGrad)" />
-            <rect x="80" y="70" width="70" height="70" rx="15" fill="url(#lgreenGrad)" />
-            <circle cx="145" cy="135" r="40" fill="url(#lmagentaGrad)" />
-        </svg>
-        <h1 class="splash-title">SONIC20VERSE</h1>
-        <p class="splash-tagline">20 Nada Menggema di Semesta</p>
-        <p class="splash-sub">Loading Studio...</p>
-        <div class="splash-loader"><div class="loader-bar" id="loaderBar"></div></div>
-        <p class="splash-version">v2.0.0</p>
-    </div>
-</div>
     
-    <!-- MAIN APP - ARRANGER KEYBOARD -->
+    <!-- ============================================ -->
+    <!-- MAIN APP - ARRANGER KEYBOARD                 -->
+    <!-- ============================================ -->
     <div id="app" class="arranger-app">
         
-        <!-- HEADER -->
+        <!-- HEADER DENGAN POWER BUTTON -->
         <header class="app-header">
             <div class="header-left">
                 <svg class="header-logo" viewBox="0 0 200 200" width="36" height="36">
@@ -186,6 +107,8 @@
                 </svg>
                 <span class="app-title">SONIC20VERSE</span>
             </div>
+            
+            <!-- STATUS INDICATORS -->
             <div class="header-status">
                 <span class="status-item" id="statusMIDI" title="MIDI">🎹 MIDI ●</span>
                 <span class="status-item" id="statusUSB" title="USB">💾 USB ●</span>
@@ -194,15 +117,25 @@
                 <span class="status-item" id="statusBattery">🔋 85%</span>
                 <span class="status-item" id="statusClock">🕐 12:30</span>
             </div>
-            <nav class="tab-nav" id="tabNav">
-                <button class="tab-btn active" data-tab="keyboard">🎹 Keyboard</button>
-                <button class="tab-btn" data-tab="style">🎼 Style</button>
-                <button class="tab-btn" data-tab="voice">🎺 Voice</button>
-                <button class="tab-btn" data-tab="recorder">🎙️ Recorder</button>
-                <button class="tab-btn" data-tab="mixer">🎚️ Mixer</button>
-                <button class="tab-btn" data-tab="ai">🤖 AI</button>
-                <button class="tab-btn" data-tab="settings">⚙️ Settings</button>
-            </nav>
+            
+            <!-- POWER BUTTON ON/OFF - DI HEADER -->
+            <div class="header-power">
+                <div class="power-indicator">
+                    <span class="power-led" id="powerLed"></span>
+                    <span class="power-label" id="powerLabel">OFF</span>
+                </div>
+                <button id="btnPowerStudio" class="power-studio-btn" title="Power ON/OFF Keyboard">
+                    <svg viewBox="0 0 24 24" width="24" height="24">
+                        <path d="M12 2 L12 12 M12 12 L8 8 M12 12 L16 8" 
+                              stroke="currentColor" stroke-width="2.5" 
+                              stroke-linecap="round" fill="none"/>
+                        <circle cx="12" cy="14" r="8" 
+                                stroke="currentColor" stroke-width="2.5" 
+                                fill="none"/>
+                    </svg>
+                </button>
+            </div>
+            
             <button class="menu-toggle" id="menuToggle">☰</button>
         </header>
 
@@ -251,17 +184,10 @@
                 <button class="menu-item" data-menu="eq">EQ</button>
                 <button class="menu-item" data-menu="settings">SETTINGS</button>
             </div>
-            <div class="screen-search">
-                <input type="text" placeholder="🔍 Search Style / Voice / Song..." id="searchInput" class="search-input" />
-                <button class="search-category">Categories ▼</button>
-                <button class="search-fav">⭐ Favorites</button>
-                <button class="search-recent">🕐 Recent</button>
-            </div>
         </div>
 
         <!-- KNOBS & FADERS SECTION -->
         <div class="control-panel">
-            <!-- KIRI: Volume & Effects -->
             <div class="panel-section left-panel">
                 <div class="panel-title">🎛️ VOLUME & EFFECTS</div>
                 <div class="knobs-row">
@@ -302,7 +228,6 @@
                 </div>
             </div>
 
-            <!-- TENGAH: Style Section -->
             <div class="panel-section center-panel">
                 <div class="panel-title">🎼 STYLE & RHYTHM</div>
                 <div class="style-controls">
@@ -337,7 +262,6 @@
                 </div>
             </div>
 
-            <!-- KANAN: Pan, Tone, dll -->
             <div class="panel-section right-panel">
                 <div class="panel-title">🎚️ TONE & PAN</div>
                 <div class="knobs-row">
@@ -384,12 +308,12 @@
             <div class="transport-section">
                 <div class="panel-title">⏯️ TRANSPORT</div>
                 <div class="transport-buttons">
-                    <button class="transport-btn" id="btnRewind" title="Rewind">⏪</button>
-                    <button class="transport-btn play-btn" id="btnPlay" title="Play">▶️</button>
-                    <button class="transport-btn" id="btnStop" title="Stop">⏹️</button>
-                    <button class="transport-btn rec-btn" id="btnRecord" title="Record">⏺️</button>
-                    <button class="transport-btn" id="btnFastForward" title="Forward">⏩</button>
-                    <button class="transport-btn" id="btnPause" title="Pause">⏸️</button>
+                    <button class="transport-btn" id="btnRewind">⏪</button>
+                    <button class="transport-btn play-btn" id="btnPlay">▶️</button>
+                    <button class="transport-btn" id="btnStop">⏹️</button>
+                    <button class="transport-btn rec-btn" id="btnRecord">⏺️</button>
+                    <button class="transport-btn" id="btnFastForward">⏩</button>
+                    <button class="transport-btn" id="btnPause">⏸️</button>
                 </div>
                 <div class="transport-buttons">
                     <button class="transport-btn small" id="btnFadeIn">FADE IN</button>
@@ -428,7 +352,7 @@
                 <div class="panel-title">🎙️ RECORDER</div>
                 <div class="recorder-tracks">
                     <span class="track-label">Track:</span>
-                    <button class="track-btn" data-track="1">1</button>
+                    <button class="track-btn active" data-track="1">1</button>
                     <button class="track-btn" data-track="2">2</button>
                     <button class="track-btn" data-track="3">3</button>
                     <button class="track-btn" data-track="4">4</button>
@@ -443,7 +367,7 @@
             </div>
         </div>
 
-        <!-- VOICE & SPLIT/LAYER SECTION -->
+        <!-- VOICE & SPLIT/LAYER -->
         <div class="voice-split-panel">
             <div class="voice-panel">
                 <div class="panel-title">🎺 VOICE & INSTRUMENT</div>
@@ -560,7 +484,7 @@
             </div>
         </div>
 
-        <!-- ARP, AI, EFFECTS, PERFORMANCE -->
+        <!-- ARP, AI, FX, PERFORMANCE -->
         <div class="arp-ai-fx-panel">
             <div class="arp-section">
                 <div class="panel-title">🎼 ARPEGGIATOR</div>
@@ -743,64 +667,5 @@
     <script src="js/ui/pads.js"></script>
     <script src="js/ui/display.js"></script>
     <script src="js/app.js"></script>
-    
-    <!-- LANDING PAGE HANDLER -->
-    <script>
-        (function() {
-            var landingPage = document.getElementById('landing-page');
-            var splashScreen = document.getElementById('splash-screen');
-            var appContainer = document.getElementById('app');
-            var btnMulai = document.getElementById('btnMulai');
-            var loaderBar = document.getElementById('loaderBar');
-            
-            function showSplash() {
-                if (landingPage) landingPage.classList.add('hidden');
-                if (splashScreen) splashScreen.classList.add('show');
-                
-                if (loaderBar) {
-                    loaderBar.style.width = '0%';
-                    var progress = 0;
-                    var interval = setInterval(function() {
-                        progress += Math.random() * 8 + 2;
-                        if (progress >= 100) {
-                            progress = 100;
-                            clearInterval(interval);
-                            loaderBar.style.width = '100%';
-                            setTimeout(hideSplashAndShowApp, 500);
-                        }
-                        loaderBar.style.width = progress + '%';
-                    }, 120);
-                } else {
-                    setTimeout(hideSplashAndShowApp, 2500);
-                }
-            }
-            
-            function hideSplashAndShowApp() {
-                if (splashScreen) {
-                    splashScreen.classList.remove('show');
-                    splashScreen.style.display = 'none';
-                }
-                if (appContainer) {
-                    appContainer.classList.add('show');
-                    appContainer.style.display = 'flex';
-                }
-                if (typeof initApp === 'function') initApp();
-            }
-            
-            if (btnMulai) {
-                var newBtn = btnMulai.cloneNode(true);
-                btnMulai.parentNode.replaceChild(newBtn, btnMulai);
-                newBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    showSplash();
-                });
-                newBtn.addEventListener('touchstart', function(e) {
-                    e.preventDefault();
-                    showSplash();
-                }, { passive: false });
-            }
-        })();
-    </script>
 </body>
 </html>
