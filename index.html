@@ -12,7 +12,7 @@
 </head>
 <body>
     <!-- ============================================ -->
-    <!-- LANDING PAGE - Sederhana                     -->
+    <!-- LANDING PAGE                                  -->
     <!-- ============================================ -->
     <div id="landing-page" class="landing-page">
         <div class="landing-content">
@@ -46,7 +46,7 @@
                 Kapal Induk Musik Mikrotonal Pertama di Dunia<br>
                 Powered by Multi-Agent AI for Musicians
             </p>
-            <button id="btnMulai" class="landing-btn">🚀 MULAI</button>
+            <button id="btnMulai" class="landing-btn" type="button">🚀 MULAI</button>
             <p class="landing-version">v2.0.0 · SONIC20VERSE Edition</p>
         </div>
     </div>
@@ -108,7 +108,6 @@
                 <span class="app-title">SONIC20VERSE</span>
             </div>
             
-            <!-- STATUS INDICATORS -->
             <div class="header-status">
                 <span class="status-item" id="statusMIDI" title="MIDI">🎹 MIDI ●</span>
                 <span class="status-item" id="statusUSB" title="USB">💾 USB ●</span>
@@ -118,13 +117,12 @@
                 <span class="status-item" id="statusClock">🕐 12:30</span>
             </div>
             
-            <!-- POWER BUTTON ON/OFF - DI HEADER -->
             <div class="header-power">
                 <div class="power-indicator">
                     <span class="power-led" id="powerLed"></span>
                     <span class="power-label" id="powerLabel">OFF</span>
                 </div>
-                <button id="btnPowerStudio" class="power-studio-btn" title="Power ON/OFF Keyboard">
+                <button id="btnPowerStudio" class="power-studio-btn" title="Power ON/OFF Keyboard" type="button">
                     <svg viewBox="0 0 24 24" width="24" height="24">
                         <path d="M12 2 L12 12 M12 12 L8 8 M12 12 L16 8" 
                               stroke="currentColor" stroke-width="2.5" 
@@ -136,7 +134,7 @@
                 </button>
             </div>
             
-            <button class="menu-toggle" id="menuToggle">☰</button>
+            <button class="menu-toggle" id="menuToggle" type="button">☰</button>
         </header>
 
         <!-- LAYAR MONITOR LCD -->
@@ -173,16 +171,16 @@
                 </div>
             </div>
             <div class="screen-menu">
-                <button class="menu-item active" data-menu="style">STYLE</button>
-                <button class="menu-item" data-menu="voice">VOICE</button>
-                <button class="menu-item" data-menu="song">SONG</button>
-                <button class="menu-item" data-menu="rec">REC</button>
-                <button class="menu-item" data-menu="mixer">MIXER</button>
-                <button class="menu-item" data-menu="ai">AI</button>
-                <button class="menu-item" data-menu="split">SPLIT</button>
-                <button class="menu-item" data-menu="reg">REG</button>
-                <button class="menu-item" data-menu="eq">EQ</button>
-                <button class="menu-item" data-menu="settings">SETTINGS</button>
+                <button class="menu-item active" data-menu="style" type="button">STYLE</button>
+                <button class="menu-item" data-menu="voice" type="button">VOICE</button>
+                <button class="menu-item" data-menu="song" type="button">SONG</button>
+                <button class="menu-item" data-menu="rec" type="button">REC</button>
+                <button class="menu-item" data-menu="mixer" type="button">MIXER</button>
+                <button class="menu-item" data-menu="ai" type="button">AI</button>
+                <button class="menu-item" data-menu="split" type="button">SPLIT</button>
+                <button class="menu-item" data-menu="reg" type="button">REG</button>
+                <button class="menu-item" data-menu="eq" type="button">EQ</button>
+                <button class="menu-item" data-menu="settings" type="button">SETTINGS</button>
             </div>
         </div>
 
@@ -222,9 +220,9 @@
                 </div>
                 <div class="eq-controls">
                     <span class="eq-label">EQ:</span>
-                    <button class="eq-btn" data-eq="bass">BASS</button>
-                    <button class="eq-btn" data-eq="mid">MID</button>
-                    <button class="eq-btn" data-eq="treble">TREBLE</button>
+                    <button class="eq-btn" data-eq="bass" type="button">BASS</button>
+                    <button class="eq-btn" data-eq="mid" type="button">MID</button>
+                    <button class="eq-btn" data-eq="treble" type="button">TREBLE</button>
                 </div>
             </div>
 
@@ -232,12 +230,12 @@
                 <div class="panel-title">🎼 STYLE & RHYTHM</div>
                 <div class="style-controls">
                     <div class="style-row">
-                        <button class="style-btn" id="styleIntro">INTRO</button>
-                        <button class="style-btn active" id="styleMainA">MAIN A</button>
-                        <button class="style-btn" id="styleMainB">MAIN B</button>
-                        <button class="style-btn" id="styleMainC">MAIN C</button>
-                        <button class="style-btn" id="styleFill">FILL</button>
-                        <button class="style-btn" id="styleEnding">ENDING</button>
+                        <button class="style-btn" id="styleIntro" type="button">INTRO</button>
+                        <button class="style-btn active" id="styleMainA" type="button">MAIN A</button>
+                        <button class="style-btn" id="styleMainB" type="button">MAIN B</button>
+                        <button class="style-btn" id="styleMainC" type="button">MAIN C</button>
+                        <button class="style-btn" id="styleFill" type="button">FILL</button>
+                        <button class="style-btn" id="styleEnding" type="button">ENDING</button>
                     </div>
                     <div class="style-row">
                         <span class="control-label">STYLE:</span>
@@ -296,9 +294,9 @@
                 </div>
                 <div class="mfx-controls">
                     <span class="mfx-label">MFX:</span>
-                    <button class="mfx-btn" data-mfx="mfx1">MFX 1</button>
-                    <button class="mfx-btn" data-mfx="mfx2">MFX 2</button>
-                    <button class="mfx-btn" data-mfx="master">MASTER</button>
+                    <button class="mfx-btn" data-mfx="mfx1" type="button">MFX 1</button>
+                    <button class="mfx-btn" data-mfx="mfx2" type="button">MFX 2</button>
+                    <button class="mfx-btn" data-mfx="master" type="button">MASTER</button>
                 </div>
             </div>
         </div>
@@ -308,37 +306,37 @@
             <div class="transport-section">
                 <div class="panel-title">⏯️ TRANSPORT</div>
                 <div class="transport-buttons">
-                    <button class="transport-btn" id="btnRewind">⏪</button>
-                    <button class="transport-btn play-btn" id="btnPlay">▶️</button>
-                    <button class="transport-btn" id="btnStop">⏹️</button>
-                    <button class="transport-btn rec-btn" id="btnRecord">⏺️</button>
-                    <button class="transport-btn" id="btnFastForward">⏩</button>
-                    <button class="transport-btn" id="btnPause">⏸️</button>
+                    <button class="transport-btn" id="btnRewind" type="button">⏪</button>
+                    <button class="transport-btn play-btn" id="btnPlay" type="button">▶️</button>
+                    <button class="transport-btn" id="btnStop" type="button">⏹️</button>
+                    <button class="transport-btn rec-btn" id="btnRecord" type="button">⏺️</button>
+                    <button class="transport-btn" id="btnFastForward" type="button">⏩</button>
+                    <button class="transport-btn" id="btnPause" type="button">⏸️</button>
                 </div>
                 <div class="transport-buttons">
-                    <button class="transport-btn small" id="btnFadeIn">FADE IN</button>
-                    <button class="transport-btn small" id="btnFadeOut">FADE OUT</button>
-                    <button class="transport-btn small" id="btnSyncStart">SYNC START</button>
-                    <button class="transport-btn small" id="btnSyncStop">SYNC STOP</button>
+                    <button class="transport-btn small" id="btnFadeIn" type="button">FADE IN</button>
+                    <button class="transport-btn small" id="btnFadeOut" type="button">FADE OUT</button>
+                    <button class="transport-btn small" id="btnSyncStart" type="button">SYNC START</button>
+                    <button class="transport-btn small" id="btnSyncStop" type="button">SYNC STOP</button>
                 </div>
             </div>
             
             <div class="transport-section">
                 <div class="panel-title">🎯 MODE</div>
                 <div class="mode-buttons">
-                    <button class="mode-btn active" data-mode="single">SINGLE</button>
-                    <button class="mode-btn" data-mode="fingered">FINGERED</button>
-                    <button class="mode-btn" data-mode="piano">PIANO</button>
-                    <button class="mode-btn" data-mode="chord">CHORD</button>
+                    <button class="mode-btn active" data-mode="single" type="button">SINGLE</button>
+                    <button class="mode-btn" data-mode="fingered" type="button">FINGERED</button>
+                    <button class="mode-btn" data-mode="piano" type="button">PIANO</button>
+                    <button class="mode-btn" data-mode="chord" type="button">CHORD</button>
                 </div>
             </div>
             
             <div class="transport-section">
                 <div class="panel-title">🎵 METRONOME</div>
                 <div class="metronome-controls">
-                    <button class="metro-btn" id="btnMetro">METRO</button>
-                    <button class="metro-btn" id="btnTap">TAP</button>
-                    <button class="metro-btn" id="btnSync">SYNC</button>
+                    <button class="metro-btn" id="btnMetro" type="button">METRO</button>
+                    <button class="metro-btn" id="btnTap" type="button">TAP</button>
+                    <button class="metro-btn" id="btnSync" type="button">SYNC</button>
                     <div class="tempo-display" id="tempoDisplay">120</div>
                 </div>
                 <div class="metronome-info">
@@ -352,17 +350,17 @@
                 <div class="panel-title">🎙️ RECORDER</div>
                 <div class="recorder-tracks">
                     <span class="track-label">Track:</span>
-                    <button class="track-btn active" data-track="1">1</button>
-                    <button class="track-btn" data-track="2">2</button>
-                    <button class="track-btn" data-track="3">3</button>
-                    <button class="track-btn" data-track="4">4</button>
-                    <button class="track-btn" data-track="5">5</button>
+                    <button class="track-btn active" data-track="1" type="button">1</button>
+                    <button class="track-btn" data-track="2" type="button">2</button>
+                    <button class="track-btn" data-track="3" type="button">3</button>
+                    <button class="track-btn" data-track="4" type="button">4</button>
+                    <button class="track-btn" data-track="5" type="button">5</button>
                 </div>
                 <div class="recorder-actions">
-                    <button class="rec-action" id="btnRecStart">⏺️ REC</button>
-                    <button class="rec-action" id="btnRecStop">⏹ STOP</button>
-                    <button class="rec-action" id="btnRecSave">💾 SAVE</button>
-                    <button class="rec-action" id="btnRecExport">📤 EXPORT</button>
+                    <button class="rec-action" id="btnRecStart" type="button">⏺️ REC</button>
+                    <button class="rec-action" id="btnRecStop" type="button">⏹ STOP</button>
+                    <button class="rec-action" id="btnRecSave" type="button">💾 SAVE</button>
+                    <button class="rec-action" id="btnRecExport" type="button">📤 EXPORT</button>
                 </div>
             </div>
         </div>
@@ -372,14 +370,14 @@
             <div class="voice-panel">
                 <div class="panel-title">🎺 VOICE & INSTRUMENT</div>
                 <div class="voice-buttons">
-                    <button class="voice-btn active" data-voice="piano">🎹 PIANO</button>
-                    <button class="voice-btn" data-voice="organ">🎺 ORGAN</button>
-                    <button class="voice-btn" data-voice="strings">🎻 STRINGS</button>
-                    <button class="voice-btn" data-voice="brass">🎺 BRASS</button>
-                    <button class="voice-btn" data-voice="synth">🎛️ SYNTH</button>
-                    <button class="voice-btn" data-voice="world">🌏 WORLD</button>
-                    <button class="voice-btn" data-voice="drum">🥁 DRUM</button>
-                    <button class="voice-btn" data-voice="bass">🎸 BASS</button>
+                    <button class="voice-btn active" data-voice="piano" type="button">🎹 PIANO</button>
+                    <button class="voice-btn" data-voice="organ" type="button">🎺 ORGAN</button>
+                    <button class="voice-btn" data-voice="strings" type="button">🎻 STRINGS</button>
+                    <button class="voice-btn" data-voice="brass" type="button">🎺 BRASS</button>
+                    <button class="voice-btn" data-voice="synth" type="button">🎛️ SYNTH</button>
+                    <button class="voice-btn" data-voice="world" type="button">🌏 WORLD</button>
+                    <button class="voice-btn" data-voice="drum" type="button">🥁 DRUM</button>
+                    <button class="voice-btn" data-voice="bass" type="button">🎸 BASS</button>
                 </div>
                 <div class="voice-info">
                     <div class="voice-layer">
@@ -402,19 +400,19 @@
                 <div class="split-controls">
                     <div class="split-row">
                         <span class="control-label">Split:</span>
-                        <button class="split-btn" id="splitOn">ON</button>
+                        <button class="split-btn" id="splitOn" type="button">ON</button>
                         <span class="split-point" id="splitPoint">C4</span>
                     </div>
                     <div class="layer-row">
                         <span class="control-label">Upper:</span>
-                        <button class="layer-btn active" data-layer="r1">R1</button>
-                        <button class="layer-btn" data-layer="r2">R2</button>
-                        <button class="layer-btn" data-layer="r3">R3</button>
+                        <button class="layer-btn active" data-layer="r1" type="button">R1</button>
+                        <button class="layer-btn" data-layer="r2" type="button">R2</button>
+                        <button class="layer-btn" data-layer="r3" type="button">R3</button>
                     </div>
                     <div class="layer-row">
                         <span class="control-label">Lower:</span>
-                        <button class="layer-btn" data-layer="l1">L1</button>
-                        <button class="layer-btn" data-layer="l2">L2</button>
+                        <button class="layer-btn" data-layer="l1" type="button">L1</button>
+                        <button class="layer-btn" data-layer="l2" type="button">L2</button>
                     </div>
                 </div>
             </div>
@@ -425,14 +423,14 @@
             <div class="drum-pad-panel">
                 <div class="panel-title">🥁 DRUM PAD</div>
                 <div class="drum-pads">
-                    <button class="pad-btn" data-pad="1">🥁1</button>
-                    <button class="pad-btn" data-pad="2">🥁2</button>
-                    <button class="pad-btn" data-pad="3">🥁3</button>
-                    <button class="pad-btn" data-pad="4">🥁4</button>
-                    <button class="pad-btn" data-pad="5">🥁5</button>
-                    <button class="pad-btn" data-pad="6">🥁6</button>
-                    <button class="pad-btn" data-pad="7">🥁7</button>
-                    <button class="pad-btn" data-pad="8">🥁8</button>
+                    <button class="pad-btn" data-pad="1" type="button">🥁1</button>
+                    <button class="pad-btn" data-pad="2" type="button">🥁2</button>
+                    <button class="pad-btn" data-pad="3" type="button">🥁3</button>
+                    <button class="pad-btn" data-pad="4" type="button">🥁4</button>
+                    <button class="pad-btn" data-pad="5" type="button">🥁5</button>
+                    <button class="pad-btn" data-pad="6" type="button">🥁6</button>
+                    <button class="pad-btn" data-pad="7" type="button">🥁7</button>
+                    <button class="pad-btn" data-pad="8" type="button">🥁8</button>
                 </div>
                 <div class="pad-labels">
                     <span>KICK</span>
@@ -454,32 +452,32 @@
             <div class="registration-panel">
                 <div class="panel-title">💾 REGISTRATION MEMORY</div>
                 <div class="reg-buttons">
-                    <button class="reg-btn" data-reg="1">1</button>
-                    <button class="reg-btn" data-reg="2">2</button>
-                    <button class="reg-btn" data-reg="3">3</button>
-                    <button class="reg-btn" data-reg="4">4</button>
-                    <button class="reg-btn" data-reg="5">5</button>
-                    <button class="reg-btn" data-reg="6">6</button>
-                    <button class="reg-btn" data-reg="7">7</button>
-                    <button class="reg-btn" data-reg="8">8</button>
+                    <button class="reg-btn" data-reg="1" type="button">1</button>
+                    <button class="reg-btn" data-reg="2" type="button">2</button>
+                    <button class="reg-btn" data-reg="3" type="button">3</button>
+                    <button class="reg-btn" data-reg="4" type="button">4</button>
+                    <button class="reg-btn" data-reg="5" type="button">5</button>
+                    <button class="reg-btn" data-reg="6" type="button">6</button>
+                    <button class="reg-btn" data-reg="7" type="button">7</button>
+                    <button class="reg-btn" data-reg="8" type="button">8</button>
                 </div>
                 <div class="bank-row">
                     <span class="control-label">Bank:</span>
-                    <button class="bank-btn" id="bankPrev">◀</button>
+                    <button class="bank-btn" id="bankPrev" type="button">◀</button>
                     <span class="bank-display" id="bankDisplay">01</span>
-                    <button class="bank-btn" id="bankNext">▶</button>
+                    <button class="bank-btn" id="bankNext" type="button">▶</button>
                 </div>
                 <div class="ots-row">
                     <span class="control-label">OTS:</span>
-                    <button class="ots-btn" data-ots="1">1</button>
-                    <button class="ots-btn" data-ots="2">2</button>
-                    <button class="ots-btn" data-ots="3">3</button>
-                    <button class="ots-btn" data-ots="4">4</button>
+                    <button class="ots-btn" data-ots="1" type="button">1</button>
+                    <button class="ots-btn" data-ots="2" type="button">2</button>
+                    <button class="ots-btn" data-ots="3" type="button">3</button>
+                    <button class="ots-btn" data-ots="4" type="button">4</button>
                 </div>
                 <div class="reg-actions">
-                    <button class="reg-action" id="regSave">SAVE</button>
-                    <button class="reg-action" id="regLoad">LOAD</button>
-                    <button class="reg-action" id="regInit">INIT</button>
+                    <button class="reg-action" id="regSave" type="button">SAVE</button>
+                    <button class="reg-action" id="regLoad" type="button">LOAD</button>
+                    <button class="reg-action" id="regInit" type="button">INIT</button>
                 </div>
             </div>
         </div>
@@ -489,7 +487,7 @@
             <div class="arp-section">
                 <div class="panel-title">🎼 ARPEGGIATOR</div>
                 <div class="arp-controls">
-                    <button class="arp-toggle" id="btnArpOn">ON/OFF</button>
+                    <button class="arp-toggle" id="btnArpOn" type="button">ON/OFF</button>
                     <select id="arpType" class="arp-select">
                         <option value="up">UP</option>
                         <option value="down">DOWN</option>
@@ -513,35 +511,35 @@
             <div class="ai-section">
                 <div class="panel-title">🤖 AI ASSISTANT</div>
                 <div class="ai-buttons">
-                    <button class="ai-btn" id="btnAICompose">🎵 COMPOSE</button>
-                    <button class="ai-btn" id="btnAIHarmonize">🎶 HARMONIZE</button>
-                    <button class="ai-btn" id="btnAIImprovise">🎷 IMPROVISE</button>
-                    <button class="ai-btn" id="btnAISuggest">💡 SUGGEST</button>
+                    <button class="ai-btn" id="btnAICompose" type="button">🎵 COMPOSE</button>
+                    <button class="ai-btn" id="btnAIHarmonize" type="button">🎶 HARMONIZE</button>
+                    <button class="ai-btn" id="btnAIImprovise" type="button">🎷 IMPROVISE</button>
+                    <button class="ai-btn" id="btnAISuggest" type="button">💡 SUGGEST</button>
                 </div>
             </div>
 
             <div class="effects-section">
                 <div class="panel-title">🎛️ EFFECTS (MFX)</div>
                 <div class="fx-buttons">
-                    <button class="fx-btn" data-fx="chorus">CHORUS</button>
-                    <button class="fx-btn" data-fx="flanger">FLANGER</button>
-                    <button class="fx-btn" data-fx="phaser">PHASER</button>
-                    <button class="fx-btn" data-fx="tremolo">TREMOLO</button>
-                    <button class="fx-btn" data-fx="distortion">DISTORT</button>
-                    <button class="fx-btn" data-fx="rotary">ROTARY</button>
-                    <button class="fx-btn" data-fx="compressor">COMPRESSOR</button>
+                    <button class="fx-btn" data-fx="chorus" type="button">CHORUS</button>
+                    <button class="fx-btn" data-fx="flanger" type="button">FLANGER</button>
+                    <button class="fx-btn" data-fx="phaser" type="button">PHASER</button>
+                    <button class="fx-btn" data-fx="tremolo" type="button">TREMOLO</button>
+                    <button class="fx-btn" data-fx="distortion" type="button">DISTORT</button>
+                    <button class="fx-btn" data-fx="rotary" type="button">ROTARY</button>
+                    <button class="fx-btn" data-fx="compressor" type="button">COMPRESSOR</button>
                 </div>
             </div>
 
             <div class="performance-section">
                 <div class="panel-title">🎬 PERFORMANCE</div>
                 <div class="scene-buttons">
-                    <button class="scene-btn" data-scene="1">SCENE 1</button>
-                    <button class="scene-btn" data-scene="2">SCENE 2</button>
-                    <button class="scene-btn" data-scene="3">SCENE 3</button>
+                    <button class="scene-btn" data-scene="1" type="button">SCENE 1</button>
+                    <button class="scene-btn" data-scene="2" type="button">SCENE 2</button>
+                    <button class="scene-btn" data-scene="3" type="button">SCENE 3</button>
                 </div>
                 <div class="scene-actions">
-                    <button class="scene-action" id="sceneSave">SAVE SCENE</button>
+                    <button class="scene-action" id="sceneSave" type="button">SAVE SCENE</button>
                 </div>
             </div>
         </div>
@@ -609,27 +607,27 @@
             </div>
             <div class="wheel-group">
                 <div class="wheel-label">SUSTAIN</div>
-                <button class="sustain-btn" id="btnSustain">PEDAL</button>
+                <button class="sustain-btn" id="btnSustain" type="button">PEDAL</button>
             </div>
             <div class="wheel-group">
                 <div class="wheel-label">OCTAVE</div>
                 <div class="octave-shift">
-                    <button class="oct-btn" id="btnOctDown">-</button>
+                    <button class="oct-btn" id="btnOctDown" type="button">-</button>
                     <span class="oct-display" id="octDisplay">4</span>
-                    <button class="oct-btn" id="octUp">+</button>
+                    <button class="oct-btn" id="octUp" type="button">+</button>
                 </div>
             </div>
             <div class="wheel-group">
                 <div class="wheel-label">PEDAL 1</div>
-                <button class="pedal-btn" id="btnPedal1">P1</button>
+                <button class="pedal-btn" id="btnPedal1" type="button">P1</button>
             </div>
             <div class="wheel-group">
                 <div class="wheel-label">PEDAL 2</div>
-                <button class="pedal-btn" id="btnPedal2">P2</button>
+                <button class="pedal-btn" id="btnPedal2" type="button">P2</button>
             </div>
             <div class="wheel-group">
                 <div class="wheel-label">EXPRESSION</div>
-                <button class="pedal-btn" id="btnExpression">EXP</button>
+                <button class="pedal-btn" id="btnExpression" type="button">EXP</button>
             </div>
         </div>
 
@@ -645,13 +643,131 @@
     <!-- MODAL -->
     <div class="modal-overlay" id="modalOverlay">
         <div class="modal-content">
-            <button class="modal-close" id="modalClose">&times;</button>
+            <button class="modal-close" id="modalClose" type="button">&times;</button>
             <div class="modal-body" id="modalBody"></div>
         </div>
     </div>
     
     <!-- ============================================ -->
-    <!-- JAVASCRIPT                                  -->
+    <!-- SCRIPT INLINE - HANDLER TOMBOL MULAI         -->
+    <!-- ============================================ -->
+    <script>
+        // Handler landing page - DIPASANG LANGSUNG agar pasti berfungsi
+        (function() {
+            console.log('🚀 ====================================');
+            console.log('🚀 SONIC20VERSE - Landing Handler Loaded');
+            console.log('🚀 ====================================');
+            
+            function handleMulai(e) {
+                if (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+                
+                console.log('🟢 TOMBOL MULAI DIKLIK!');
+                
+                var landingPage = document.getElementById('landing-page');
+                var splashScreen = document.getElementById('splash-screen');
+                var appContainer = document.getElementById('app');
+                var loaderBar = document.getElementById('loaderBar');
+                
+                // Step 1: Hide landing
+                if (landingPage) {
+                    landingPage.classList.add('hidden');
+                    console.log('✅ Landing page hidden');
+                }
+                
+                // Step 2: Show splash
+                setTimeout(function() {
+                    if (splashScreen) {
+                        splashScreen.classList.add('show');
+                        console.log('✅ Splash screen shown');
+                    }
+                    
+                    // Step 3: Animate loader
+                    if (loaderBar) {
+                        loaderBar.style.width = '0%';
+                        var progress = 0;
+                        var interval = setInterval(function() {
+                            progress += Math.random() * 10 + 3;
+                            if (progress >= 100) {
+                                progress = 100;
+                                clearInterval(interval);
+                                loaderBar.style.width = '100%';
+                                setTimeout(showStudio, 500);
+                            }
+                            loaderBar.style.width = progress + '%';
+                        }, 100);
+                    } else {
+                        setTimeout(showStudio, 2000);
+                    }
+                }, 600);
+            }
+            
+            function showStudio() {
+                console.log('🎹 Showing Studio...');
+                
+                var splashScreen = document.getElementById('splash-screen');
+                var appContainer = document.getElementById('app');
+                
+                if (splashScreen) {
+                    splashScreen.classList.remove('show');
+                    splashScreen.style.display = 'none';
+                }
+                
+                if (appContainer) {
+                    appContainer.classList.add('show');
+                    appContainer.style.display = 'flex';
+                    console.log('✅ Studio shown');
+                }
+                
+                // Initialize app
+                if (typeof initApp === 'function') {
+                    setTimeout(initApp, 200);
+                }
+            }
+            
+            // Pasang event listener saat DOM ready
+            function attachListener() {
+                var btnMulai = document.getElementById('btnMulai');
+                
+                if (!btnMulai) {
+                    console.error('❌ Tombol Mulai tidak ditemukan!');
+                    return;
+                }
+                
+                console.log('✅ Tombol Mulai ditemukan');
+                
+                // Hapus listener lama dengan clone
+                var newBtn = btnMulai.cloneNode(true);
+                btnMulai.parentNode.replaceChild(newBtn, btnMulai);
+                
+                // Pasang event listener baru
+                newBtn.addEventListener('click', handleMulai);
+                newBtn.addEventListener('touchstart', function(e) {
+                    e.preventDefault();
+                    handleMulai(e);
+                }, { passive: false });
+                
+                console.log('✅ Event listener tombol Mulai terpasang');
+            }
+            
+            // Coba pasang saat DOM ready
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', attachListener);
+            } else {
+                attachListener();
+            }
+            
+            // Fallback - coba lagi setelah 500ms
+            setTimeout(attachListener, 500);
+            // Fallback kedua - coba lagi setelah 1500ms
+            setTimeout(attachListener, 1500);
+        })();
+    </script>
+    
+    <!-- ============================================ -->
+    <!-- JAVASCRIPT FILES                             -->
     <!-- ============================================ -->
     <script src="js/data/frequencies.js"></script>
     <script src="js/audio/engine.js"></script>
