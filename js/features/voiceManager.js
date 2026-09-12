@@ -55,4 +55,45 @@ VoiceManager.prototype.setVoice = function(voiceName) {
 VoiceManager.prototype.setLayer = function(layerNum, voiceName) {
     if (this.layers['layer' + layerNum] !== undefined) {
         this.layers['layer' + layerNum] = voiceName;
-        console.log('🎺 Layer ' + layerNum + ': ' + voiceName
+        console.log('🎺 Layer ' + layerNum + ': ' + voiceName);
+        
+        var el = document.getElementById('layer' + layerNum);
+        if (el) el.textContent = voiceName;
+    }
+};
+
+VoiceManager.prototype.toggleLayer = function(layerNum) {
+    var key = 'layer' + layerNum;
+    if (this.layerActive[key] !== undefined) {
+        this.layerActive[key] = !this.layerActive[key];
+        console.log('🎺 Layer ' + layerNum + ': ' + (this.layerActive[key] ? 'ON' : 'OFF'));
+    }
+};
+
+VoiceManager.prototype.setSplit = function(active) {
+    this.splitActive = active;
+    console.log('🎹 Split: ' + (active ? 'ON' : 'OFF'));
+};
+
+VoiceManager.prototype.setSplitPoint = function(note) {
+    this.splitPoint = note;
+    var el = document.getElementById('splitPoint');
+    if (el) el.textContent = note;
+};
+
+VoiceManager.prototype.toggleUpperLayer = function(layer) {
+    if (this.upperLayers[layer] !== undefined) {
+        this.upperLayers[layer] = !this.upperLayers[layer];
+    }
+};
+
+VoiceManager.prototype.toggleLowerLayer = function(layer) {
+    if (this.lowerLayers[layer] !== undefined) {
+        this.lowerLayers[layer] = !this.lowerLayers[layer];
+    }
+};
+
+var voiceManager = new VoiceManager();
+window.voiceManager = voiceManager;
+window.VoiceManager = VoiceManager;
+console.log('✅ voiceManager.js loaded');
