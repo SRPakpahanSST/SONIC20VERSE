@@ -1,5 +1,5 @@
 // ============================================================
-// app.js - Entry Point with Power Management
+// app.js - Entry Point with Studio Power Management
 // SONIC20VERSE
 // ============================================================
 
@@ -21,40 +21,189 @@ var systemState = {
     powerOn: false,
     bootComplete: false,
     audioUnlocked: false,
-    inStudio: false
+    inStudio: false,
+    initialized: false
 };
 
 // ============================================================
-// POWER ON
+// LANDING PAGE HANDLER
 // ============================================================
-function powerOn() {
-    console.log('⚡ POWER ON');
-    systemState.powerOn = true;
+function setupLandingPage() {
+    var landingPage = document.getElementById('landing-page');
+    var splashScreen = document.getElementById('splash-screen');
+    var appContainer = document.getElementById('app');
+    var btnMulai = document.getElementById('btnMulai');
+    var loaderBar = document.getElementById('loaderBar');
     
-    var btnPower = document.getElementById('btnPowerOn');
-    if (btnPower) btnPower.classList.add('on');
+    if (!btnMulai) return;
+    
+    var newBtn = btnMulai.cloneNode(true);
+    btnMulai.parentNode.replaceChild(newBtn, btnMulai);
+    
+    newBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        console.log('🚀 Tombol Mulai diklik!');
+        
+        // Hide landing
+        if (landingPage) landingPage.classList.add('hidden');
+        
+        // Show splash
+        setTimeout(function() {
+            if (splashScreen) splashScreen.classList.add('show');
+            
+            // Loading bar
+            if (loaderBar) {
+                loaderBar.style.width = '0%';
+                var progress = 0;
+                var interval = setInterval(function() {
+                    progress += Math.random() * 8 + 2;
+                    if (progress >= 100) {
+                        progress = 100;
+                        clearInterval(interval);
+                        loaderBar.style.width = '100%';
+                        setTimeout(function() {
+                            // Hide splash, show app
+                            if (splashScreen) {
+                                splashScreen.classList.remove('show');
+                                splashScreen.style.display = 'none';
+                            }
+                            if (appContainer) {
+                                appContainer.classList.add('show');
+                                appContainer.style.display = 'flex';
+                            }
+                            
+                            // Initialize app
+                            setTimeout(function() {
+                                initApp();
+                            }, 200);
+                            
+                            console.log('✅ Studio siap! Tekan tombol POWER di header untuk menyalakan keyboard.');
+                        }, 500);
+                    }
+                    loaderBar.style.width = progress + '%';
+                }, 120);
+            } else {
+                setTimeout(function() {
+                    if (splashScreen) {
+                        splashScreen.classList.remove('show');
+                        splashScreen.style.display = 'none';
+                    }
+                    if (appContainer) {
+                        appContainer.classList.add('show');
+                        appContainer.style.display = 'flex';
+                    }
+                    initApp();
+                }, 2500);
+            }
+        }, 600);
+    });
+    
+    newBtn.addEventListener('touchstart', function(e) {
+        e.preventDefault();
+        newBtn.click();
+    }, { passive: false });
+}
+
+// ============================================================
+// STUDIO POWER ON/OFF
+// ============================================================
+function setupStudioPower() {
+    var btnPower = document.getElementById('btnPowerStudio');
+    var powerLed = document.getElementById('powerLed');
+    var powerLabel = document.getElementById('powerLabel');
+    
+    if (!btnPower) return;
+    
+    btnPower.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        if (systemState.powerOn) {
+            // POWER OFF
+            powerOffStudio();
+        } else {
+            // POWER ON
+            powerOnStudio();
+        }
+    });
+    
+    // Touch support
+    btnPower.addEventListener('touchstart', function(e) {
+        e.preventDefault();
+        btnPower.click();
+    }, { passive: false });
+    
+    // Initially show OFF
+    updatePowerIndicator(false);
+}
+
+function powerOnStudio() {
+    console.log('⚡ POWER ON Studio');
+    
+    systemState.powerOn = true;
+    updatePowerIndicator(true);
+    
+    // Unlock audio
+    unlockAudio();
     
     // Play startup sound
     playStartupSound();
     
-    // Wait a bit then show boot screen
-    setTimeout(function() {
-        showBootScreen();
-    }, 500);
+    // Show boot screen
+    showBootScreen();
 }
 
-function powerOff() {
-    console.log('⏻ POWER OFF');
+function powerOffStudio() {
+    console.log('⏻ POWER OFF Studio');
+    
     systemState.powerOn = false;
-    systemState.bootComplete = false;
-    systemState.inStudio = false;
+    updatePowerIndicator(false);
     
     // Stop all audio
     if (audioEngine) audioEngine.stopAll();
     if (styleEngine) styleEngine.stop();
     
-    // Show landing page
-    showLandingPage();
+    // Stop all keys active
+    if (keyboardRenderer) {
+        Object.keys(keyboardRenderer.activeKeys).forEach(function(noteName) {
+            var key = keyboardRenderer.keyElements[noteName];
+            if (key) keyboardRenderer.deactivateKey(key);
+        });
+    }
+    
+    console.log('💤 Studio OFF - Tekan tombol POWER untuk menyalakan kembali');
+}
+
+function updatePowerIndicator(isOn) {
+    var btnPower = document.getElementById('btnPowerStudio');
+    var powerLed = document.getElementById('powerLed');
+    var powerLabel = document.getElementById('powerLabel');
+    
+    if (btnPower) {
+        if (isOn) {
+            btnPower.classList.add('on');
+        } else {
+            btnPower.classList.remove('on');
+        }
+    }
+    
+    if (powerLed) {
+        if (isOn) {
+            powerLed.classList.add('on');
+        } else {
+            powerLed.classList.remove('on');
+        }
+    }
+    
+    if (powerLabel) {
+        powerLabel.textContent = isOn ? 'ON' : 'OFF';
+        if (isOn) {
+            powerLabel.classList.add('on');
+        } else {
+            powerLabel.classList.remove('on');
+        }
+    }
 }
 
 // ============================================================
@@ -63,6 +212,7 @@ function powerOff() {
 function playStartupSound() {
     try {
         var ctx = new (window.AudioContext || window.webkitAudioContext)();
+        if (ctx.state === 'suspended') ctx.resume();
         
         // Startup chord: C-E-G-C
         var notes = [261.63, 329.63, 392.00, 523.25];
@@ -93,6 +243,33 @@ function playStartupSound() {
 }
 
 // ============================================================
+// UNLOCK AUDIO
+// ============================================================
+function unlockAudio() {
+    try {
+        var ctx = new (window.AudioContext || window.webkitAudioContext)();
+        if (ctx.state === 'suspended') {
+            ctx.resume();
+        }
+        systemState.audioUnlocked = true;
+        console.log('🔊 Audio unlocked');
+        
+        // Play silent tone to unlock
+        var osc = ctx.createOscillator();
+        var gain = ctx.createGain();
+        gain.gain.value = 0.001;
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + 0.1);
+        
+        setTimeout(function() { ctx.close(); }, 500);
+    } catch(e) {
+        console.log('Audio unlock error:', e);
+    }
+}
+
+// ============================================================
 // BOOT SCREEN
 // ============================================================
 var bootSteps = [
@@ -111,7 +288,11 @@ var bootSteps = [
 
 function showBootScreen() {
     var bootScreen = document.getElementById('boot-screen');
-    if (!bootScreen) return;
+    if (!bootScreen) {
+        // No boot screen, just enable
+        systemState.bootComplete = true;
+        return;
+    }
     
     bootScreen.classList.add('show');
     
@@ -119,11 +300,22 @@ function showBootScreen() {
     var statusEl = document.getElementById('bootStatus');
     var logEl = document.getElementById('bootLog');
     
+    // Clear log
+    if (logEl) logEl.innerHTML = '';
+    
     var stepIndex = 0;
     
     function runBootStep() {
         if (stepIndex >= bootSteps.length) {
-            setTimeout(showHomeScreen, 800);
+            setTimeout(function() {
+                bootScreen.classList.remove('show');
+                systemState.bootComplete = true;
+                console.log('🎉 Boot complete! Keyboard ready to play.');
+                
+                // Update footer
+                var footerStatus = document.getElementById('footerStatus');
+                if (footerStatus) footerStatus.textContent = 'Status: Ready';
+            }, 800);
             return;
         }
         
@@ -149,99 +341,11 @@ function showBootScreen() {
 }
 
 // ============================================================
-// HOME SCREEN
-// ============================================================
-function showHomeScreen() {
-    systemState.bootComplete = true;
-    
-    var bootScreen = document.getElementById('boot-screen');
-    if (bootScreen) bootScreen.classList.remove('show');
-    
-    var homeScreen = document.getElementById('home-screen');
-    if (homeScreen) homeScreen.classList.add('show');
-    
-    console.log('🏠 Home screen ready');
-}
-
-// ============================================================
-// ENTER STUDIO
-// ============================================================
-function enterStudio() {
-    console.log('🎹 Entering Studio...');
-    
-    // Unlock audio
-    unlockAudio();
-    
-    systemState.inStudio = true;
-    
-    var homeScreen = document.getElementById('home-screen');
-    if (homeScreen) homeScreen.classList.remove('show');
-    
-    var splashScreen = document.getElementById('splash-screen');
-    if (splashScreen) splashScreen.classList.add('show');
-    
-    // Load studio after splash
-    setTimeout(function() {
-        if (splashScreen) splashScreen.classList.remove('show');
-        
-        var app = document.getElementById('app');
-        if (app) {
-            app.classList.add('show');
-            app.style.display = 'flex';
-        }
-        
-        // Initialize all systems
-        initApp();
-        
-        // Update audio status
-        updateAudioStatus('unlocked');
-    }, 2500);
-}
-
-// ============================================================
-// UNLOCK AUDIO
-// ============================================================
-function unlockAudio() {
-    try {
-        var ctx = new (window.AudioContext || window.webkitAudioContext)();
-        if (ctx.state === 'suspended') {
-            ctx.resume();
-        }
-        systemState.audioUnlocked = true;
-        console.log('🔊 Audio unlocked');
-        
-        // Play test tone (silent)
-        var osc = ctx.createOscillator();
-        var gain = ctx.createGain();
-        gain.gain.value = 0.001;
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-        osc.start();
-        osc.stop(ctx.currentTime + 0.1);
-        
-        setTimeout(function() { ctx.close(); }, 500);
-    } catch(e) {
-        console.log('Audio unlock error:', e);
-    }
-}
-
-function updateAudioStatus(status) {
-    var el = document.getElementById('audioStatus');
-    if (el) {
-        if (status === 'unlocked') {
-            el.textContent = '✅ Unlocked';
-            el.className = 'status-value ready';
-        } else {
-            el.textContent = '🔒 Locked (Tap to unlock)';
-            el.className = 'status-value locked';
-        }
-    }
-}
-
-// ============================================================
 // INIT APP
 // ============================================================
 function initApp() {
+    if (systemState.initialized) return;
+    
     console.log('🎹 SONIC20VERSE initializing...');
     
     try {
@@ -251,49 +355,74 @@ function initApp() {
         console.log('✅ Audio Engine siap');
         
         // 2. Display Manager
-        displayManager = new DisplayManager();
-        displayManager.init();
+        if (typeof DisplayManager !== 'undefined') {
+            displayManager = new DisplayManager();
+            displayManager.init();
+        }
         
         // 3. Keyboard
-        keyboardRenderer = new KeyboardRenderer();
-        keyboardRenderer.init(audioEngine);
-        console.log('✅ Keyboard siap (E2 - A7)');
+        if (typeof KeyboardRenderer !== 'undefined') {
+            keyboardRenderer = new KeyboardRenderer();
+            keyboardRenderer.init(audioEngine);
+            console.log('✅ Keyboard siap (E2 - A7)');
+        }
         
         // 4. Style Engine
-        styleEngine = new StyleEngine();
-        styleEngine.init(audioEngine);
+        if (typeof StyleEngine !== 'undefined') {
+            styleEngine = new StyleEngine();
+            styleEngine.init(audioEngine);
+        }
         
         // 5. Voice Manager
-        voiceManager = new VoiceManager();
-        voiceManager.init(audioEngine);
+        if (typeof VoiceManager !== 'undefined') {
+            voiceManager = new VoiceManager();
+            voiceManager.init(audioEngine);
+        }
         
         // 6. Arpeggiator
-        arpeggiator = new Arpeggiator();
-        arpeggiator.init(audioEngine);
+        if (typeof Arpeggiator !== 'undefined') {
+            arpeggiator = new Arpeggiator();
+            arpeggiator.init(audioEngine);
+        }
         
         // 7. Recorder
-        recorder = new Recorder();
-        recorder.init();
+        if (typeof Recorder !== 'undefined') {
+            recorder = new Recorder();
+            recorder.init();
+        }
         
         // 8. Mixer
-        mixer = new Mixer();
-        mixer.init(audioEngine);
+        if (typeof Mixer !== 'undefined') {
+            mixer = new Mixer();
+            mixer.init(audioEngine);
+        }
         
         // 9. AI Assistant
-        aiAssistant = new AIAssistant();
-        aiAssistant.init(audioEngine);
+        if (typeof AIAssistant !== 'undefined') {
+            aiAssistant = new AIAssistant();
+            aiAssistant.init(audioEngine);
+        }
         
         // 10. UI Controllers
-        knobController = new KnobController();
-        knobController.init();
+        if (typeof KnobController !== 'undefined') {
+            knobController = new KnobController();
+            knobController.init();
+        }
         
-        wheelController = new WheelController();
-        wheelController.init();
+        if (typeof WheelController !== 'undefined') {
+            wheelController = new WheelController();
+            wheelController.init();
+        }
         
-        padController = new PadController();
-        padController.init(audioEngine);
+        if (typeof PadController !== 'undefined') {
+            padController = new PadController();
+            padController.init(audioEngine);
+        }
         
-        // Setup events
+        // Setup Power Button
+        setupStudioPower();
+        
+        // Setup other controls
         setupControls();
         setupTabs();
         setupTransport();
@@ -301,9 +430,8 @@ function initApp() {
         setupVoiceControls();
         setupAIEvents();
         setupClock();
-        setupPowerButton();
         
-        // Register global references
+        // Register globals
         window.audioEngine = audioEngine;
         window.keyboardRenderer = keyboardRenderer;
         window.styleEngine = styleEngine;
@@ -314,83 +442,18 @@ function initApp() {
         window.aiAssistant = aiAssistant;
         window.displayManager = displayManager;
         
+        systemState.initialized = true;
+        
         console.log('🎉 SONIC20VERSE initialized!');
         console.log('⚓ 20 Nada Menggema di Semesta');
+        console.log('💡 Tekan tombol POWER di header untuk menyalakan keyboard.');
     } catch (error) {
         console.error('❌ Error:', error);
     }
 }
 
 // ============================================================
-// SETUP POWER BUTTON
-// ============================================================
-function setupPowerButton() {
-    var btnPowerOn = document.getElementById('btnPowerOn');
-    var btnPowerOff = document.getElementById('btnPowerOff');
-    var btnEnterStudio = document.getElementById('btnEnterStudio');
-    var btnQuickStart = document.getElementById('btnQuickStart');
-    
-    if (btnPowerOn) {
-        btnPowerOn.addEventListener('click', powerOn);
-        btnPowerOn.addEventListener('touchstart', function(e) {
-            e.preventDefault();
-            powerOn();
-        }, { passive: false });
-    }
-    
-    if (btnPowerOff) {
-        btnPowerOff.addEventListener('click', function() {
-            if (confirm('Matikan SONIC20VERSE?')) {
-                powerOff();
-            }
-        });
-    }
-    
-    if (btnEnterStudio) {
-        btnEnterStudio.addEventListener('click', enterStudio);
-    }
-    
-    if (btnQuickStart) {
-        btnQuickStart.addEventListener('click', function() {
-            unlockAudio();
-            enterStudio();
-        });
-    }
-    
-    // Unlock audio on any user interaction
-    document.addEventListener('click', function() {
-        if (!systemState.audioUnlocked) {
-            unlockAudio();
-            updateAudioStatus('unlocked');
-        }
-    }, { once: false });
-}
-
-// ============================================================
-// SHOW LANDING PAGE
-// ============================================================
-function showLandingPage() {
-    var landingPage = document.getElementById('landing-page');
-    var homeScreen = document.getElementById('home-screen');
-    var bootScreen = document.getElementById('boot-screen');
-    var splashScreen = document.getElementById('splash-screen');
-    var app = document.getElementById('app');
-    
-    if (landingPage) landingPage.classList.remove('hidden');
-    if (homeScreen) homeScreen.classList.remove('show');
-    if (bootScreen) bootScreen.classList.remove('show');
-    if (splashScreen) splashScreen.classList.remove('show');
-    if (app) {
-        app.classList.remove('show');
-        app.style.display = 'none';
-    }
-    
-    var btnPower = document.getElementById('btnPowerOn');
-    if (btnPower) btnPower.classList.remove('on');
-}
-
-// ============================================================
-// EXISTING SETUP FUNCTIONS
+// SETUP FUNCTIONS
 // ============================================================
 
 function setupControls() {
@@ -440,6 +503,10 @@ function setupTransport() {
     var btnPlay = document.getElementById('btnPlay');
     if (btnPlay) {
         btnPlay.addEventListener('click', function() {
+            if (!systemState.powerOn) {
+                console.log('⚠️ Power OFF - tekan POWER dulu');
+                return;
+            }
             if (styleEngine) {
                 if (styleEngine.isPlaying) {
                     styleEngine.stop();
@@ -458,19 +525,6 @@ function setupTransport() {
             if (styleEngine) styleEngine.stop();
             if (audioEngine) audioEngine.stopAll();
             if (btnPlay) btnPlay.textContent = '▶️';
-        });
-    }
-    
-    var btnRecord = document.getElementById('btnRecord');
-    if (btnRecord) {
-        btnRecord.addEventListener('click', function() {
-            if (recorder) {
-                if (recorder.isRecording) {
-                    recorder.stopRecording();
-                } else {
-                    recorder.startRecording();
-                }
-            }
         });
     }
 }
@@ -493,8 +547,6 @@ function setupStyleControls() {
                     }
                 });
                 this.classList.add('active');
-                var section = id.replace('style', '').toLowerCase();
-                if (styleEngine) styleEngine.setSection(section);
             });
         }
     });
@@ -517,6 +569,7 @@ function setupAIEvents() {
     var btnCompose = document.getElementById('btnAICompose');
     if (btnCompose) {
         btnCompose.addEventListener('click', function() {
+            if (!systemState.powerOn) return;
             if (aiAssistant) {
                 var melody = aiAssistant.compose('maqam_rast', 'happy');
                 aiAssistant.playMelody(melody);
@@ -527,19 +580,10 @@ function setupAIEvents() {
     var btnImprovise = document.getElementById('btnAIImprovise');
     if (btnImprovise) {
         btnImprovise.addEventListener('click', function() {
+            if (!systemState.powerOn) return;
             if (aiAssistant) {
                 var impro = aiAssistant.improvise('I-IV-V-I');
                 aiAssistant.playMelody(impro);
-            }
-        });
-    }
-    
-    var btnSuggest = document.getElementById('btnAISuggest');
-    if (btnSuggest) {
-        btnSuggest.addEventListener('click', function() {
-            if (aiAssistant) {
-                var chord = aiAssistant.suggestChord([]);
-                if (displayManager) displayManager.updateChord(chord);
             }
         });
     }
@@ -561,8 +605,14 @@ function setupClock() {
 // STARTUP
 // ============================================================
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('📄 SONIC20VERSE - Ready for POWER ON');
-    setupPowerButton();
+    console.log('📄 SONIC20VERSE - Ready');
+    setupLandingPage();
+});
+
+window.addEventListener('load', function() {
+    if (!systemState.initialized) {
+        // Fallback
+    }
 });
 
 console.log('✅ app.js loaded');
