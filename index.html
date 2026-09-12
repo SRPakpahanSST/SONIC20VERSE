@@ -1,1 +1,701 @@
-hh
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>SONIC20VERSE - 20 Nada Menggema di Semesta</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/arranger.css" />
+    <link rel="stylesheet" href="css/keyboard.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+    <!-- LANDING PAGE -->
+    <div id="landing-page" class="landing-page">
+        <div class="landing-content">
+            <div class="landing-logo-container">
+                <svg class="landing-logo" viewBox="0 0 200 200">
+                    <defs>
+                        <linearGradient id="lblueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#0F3460" />
+                            <stop offset="100%" style="stop-color:#2196F3" />
+                        </linearGradient>
+                        <linearGradient id="lgreenGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#2E7D32" />
+                            <stop offset="100%" style="stop-color:#4CAF50" />
+                        </linearGradient>
+                        <linearGradient id="lmagentaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#C2185B" />
+                            <stop offset="100%" style="stop-color:#E91E63" />
+                        </linearGradient>
+                    </defs>
+                    <path d="M 120 60 C 160 60, 180 90, 150 130 C 120 170, 60 160, 30 120 C 10 90, 30 50, 60 40" 
+                          fill="none" stroke="#0F3460" stroke-width="12" stroke-linecap="round" />
+                    <polygon points="50,60 90,140 10,140" fill="url(#lblueGrad)" />
+                    <rect x="80" y="70" width="70" height="70" rx="15" fill="url(#lgreenGrad)" />
+                    <circle cx="145" cy="135" r="40" fill="url(#lmagentaGrad)" />
+                </svg>
+            </div>
+            <h1 class="landing-title">SONIC20VERSE</h1>
+            <p class="landing-tagline">20 NADA MENGGEMA DI SEMESTA</p>
+            <p class="landing-subtitle">20-NOTE MICROTONAL ECOSYSTEM · ARRANGER KEYBOARD</p>
+            <p class="landing-description">
+                Kapal Induk Musik Mikrotonal Pertama di Dunia<br>
+                Powered by Multi-Agent AI for Musicians
+            </p>
+            <button id="btnMulai" class="landing-btn">🚀 MULAI</button>
+            <p class="landing-version">v2.0.0 · SONIC20VERSE Edition</p>
+        </div>
+    </div>
+
+    <!-- SPLASH SCREEN -->
+    <div id="splash-screen" class="splash-screen">
+        <div class="splash-content">
+            <svg class="splash-logo" viewBox="0 0 200 200">
+                <use href="#lblueGrad" />
+                <path d="M 120 60 C 160 60, 180 90, 150 130 C 120 170, 60 160, 30 120 C 10 90, 30 50, 60 40" 
+                      fill="none" stroke="#0F3460" stroke-width="12" stroke-linecap="round" />
+                <polygon points="50,60 90,140 10,140" fill="url(#lblueGrad)" />
+                <rect x="80" y="70" width="70" height="70" rx="15" fill="url(#lgreenGrad)" />
+                <circle cx="145" cy="135" r="40" fill="url(#lmagentaGrad)" />
+            </svg>
+            <h1 class="splash-title">SONIC20VERSE</h1>
+            <p class="splash-tagline">20 Nada Menggema di Semesta</p>
+            <p class="splash-sub">20-Note Microtonal Ecosystem · Multi-Agent AI</p>
+            <div class="splash-loader"><div class="loader-bar" id="loaderBar"></div></div>
+            <p class="splash-version">v2.0.0</p>
+        </div>
+    </div>
+    
+    <!-- MAIN APP - ARRANGER KEYBOARD -->
+    <div id="app" class="arranger-app">
+        
+        <!-- HEADER -->
+        <header class="app-header">
+            <div class="header-left">
+                <svg class="header-logo" viewBox="0 0 200 200" width="36" height="36">
+                    <polygon points="50,60 90,140 10,140" fill="url(#lblueGrad)" />
+                    <rect x="80" y="70" width="70" height="70" rx="15" fill="url(#lgreenGrad)" />
+                    <circle cx="145" cy="135" r="40" fill="url(#lmagentaGrad)" />
+                </svg>
+                <span class="app-title">SONIC20VERSE</span>
+            </div>
+            <div class="header-status">
+                <span class="status-item" id="statusMIDI" title="MIDI">🎹 MIDI ●</span>
+                <span class="status-item" id="statusUSB" title="USB">💾 USB ●</span>
+                <span class="status-item" id="statusBT" title="Bluetooth">📡 BT ○</span>
+                <span class="status-item" id="statusWiFi" title="WiFi">📶 WiFi ○</span>
+                <span class="status-item" id="statusBattery">🔋 85%</span>
+                <span class="status-item" id="statusClock">🕐 12:30</span>
+            </div>
+            <nav class="tab-nav" id="tabNav">
+                <button class="tab-btn active" data-tab="keyboard">🎹 Keyboard</button>
+                <button class="tab-btn" data-tab="style">🎼 Style</button>
+                <button class="tab-btn" data-tab="voice">🎺 Voice</button>
+                <button class="tab-btn" data-tab="recorder">🎙️ Recorder</button>
+                <button class="tab-btn" data-tab="mixer">🎚️ Mixer</button>
+                <button class="tab-btn" data-tab="ai">🤖 AI</button>
+                <button class="tab-btn" data-tab="settings">⚙️ Settings</button>
+            </nav>
+            <button class="menu-toggle" id="menuToggle">☰</button>
+        </header>
+
+        <!-- LAYAR MONITOR LCD -->
+        <div class="main-screen">
+            <div class="screen-panel">
+                <div class="screen-column">
+                    <div class="screen-label">NOW PLAYING</div>
+                    <div class="screen-value" id="nowPlayingNote">-</div>
+                    <div class="screen-subvalue" id="nowPlayingFreq">- Hz</div>
+                    <div class="screen-meter">
+                        <div class="meter-bar" id="volumeMeter"></div>
+                    </div>
+                </div>
+                <div class="screen-column">
+                    <div class="screen-label">CHORD DISPLAY</div>
+                    <div class="chord-grid" id="chordDisplay">
+                        <span class="chord-slot active">C</span>
+                        <span class="chord-slot">Am</span>
+                        <span class="chord-slot">F</span>
+                        <span class="chord-slot">G</span>
+                    </div>
+                </div>
+                <div class="screen-column">
+                    <div class="screen-label">SONG & STYLE</div>
+                    <div class="screen-value" id="currentStyle">Maqam Rast</div>
+                    <div class="screen-subvalue" id="currentTempo">♩ = 120 BPM</div>
+                    <div class="screen-subvalue" id="currentScale">Mayor E</div>
+                    <div class="beat-indicator" id="beatIndicator">
+                        <span class="beat">●</span>
+                        <span class="beat">●</span>
+                        <span class="beat">●</span>
+                        <span class="beat">●</span>
+                    </div>
+                </div>
+            </div>
+            <div class="screen-menu">
+                <button class="menu-item active" data-menu="style">STYLE</button>
+                <button class="menu-item" data-menu="voice">VOICE</button>
+                <button class="menu-item" data-menu="song">SONG</button>
+                <button class="menu-item" data-menu="rec">REC</button>
+                <button class="menu-item" data-menu="mixer">MIXER</button>
+                <button class="menu-item" data-menu="ai">AI</button>
+                <button class="menu-item" data-menu="split">SPLIT</button>
+                <button class="menu-item" data-menu="reg">REG</button>
+                <button class="menu-item" data-menu="eq">EQ</button>
+                <button class="menu-item" data-menu="settings">SETTINGS</button>
+            </div>
+            <div class="screen-search">
+                <input type="text" placeholder="🔍 Search Style / Voice / Song..." id="searchInput" class="search-input" />
+                <button class="search-category">Categories ▼</button>
+                <button class="search-fav">⭐ Favorites</button>
+                <button class="search-recent">🕐 Recent</button>
+            </div>
+        </div>
+
+        <!-- KNOBS & FADERS SECTION -->
+        <div class="control-panel">
+            <!-- KIRI: Volume & Effects -->
+            <div class="panel-section left-panel">
+                <div class="panel-title">🎛️ VOLUME & EFFECTS</div>
+                <div class="knobs-row">
+                    <div class="knob-group">
+                        <div class="knob" data-knob="volume" data-min="0" data-max="100" data-value="70">
+                            <div class="knob-indicator"></div>
+                        </div>
+                        <div class="knob-label">VOLUME</div>
+                        <div class="knob-value" id="knobVolumeVal">70</div>
+                    </div>
+                    <div class="knob-group">
+                        <div class="knob" data-knob="reverb" data-min="0" data-max="100" data-value="30">
+                            <div class="knob-indicator"></div>
+                        </div>
+                        <div class="knob-label">REVERB</div>
+                        <div class="knob-value" id="knobReverbVal">30</div>
+                    </div>
+                    <div class="knob-group">
+                        <div class="knob" data-knob="delay" data-min="0" data-max="100" data-value="20">
+                            <div class="knob-indicator"></div>
+                        </div>
+                        <div class="knob-label">DELAY</div>
+                        <div class="knob-value" id="knobDelayVal">20</div>
+                    </div>
+                    <div class="knob-group">
+                        <div class="knob" data-knob="chorus" data-min="0" data-max="100" data-value="10">
+                            <div class="knob-indicator"></div>
+                        </div>
+                        <div class="knob-label">CHORUS</div>
+                        <div class="knob-value" id="knobChorusVal">10</div>
+                    </div>
+                </div>
+                <div class="eq-controls">
+                    <span class="eq-label">EQ:</span>
+                    <button class="eq-btn" data-eq="bass">BASS</button>
+                    <button class="eq-btn" data-eq="mid">MID</button>
+                    <button class="eq-btn" data-eq="treble">TREBLE</button>
+                </div>
+            </div>
+
+            <!-- TENGAH: Style Section -->
+            <div class="panel-section center-panel">
+                <div class="panel-title">🎼 STYLE & RHYTHM</div>
+                <div class="style-controls">
+                    <div class="style-row">
+                        <button class="style-btn" id="styleIntro">INTRO</button>
+                        <button class="style-btn active" id="styleMainA">MAIN A</button>
+                        <button class="style-btn" id="styleMainB">MAIN B</button>
+                        <button class="style-btn" id="styleMainC">MAIN C</button>
+                        <button class="style-btn" id="styleFill">FILL</button>
+                        <button class="style-btn" id="styleEnding">ENDING</button>
+                    </div>
+                    <div class="style-row">
+                        <span class="control-label">STYLE:</span>
+                        <select id="styleSelect" class="style-select">
+                            <option value="maqam_rast">Maqam Rast</option>
+                            <option value="maqam_bayati">Maqam Bayati</option>
+                            <option value="maqam_hijaz">Maqam Hijaz</option>
+                            <option value="pop_ballad">Pop Ballad</option>
+                            <option value="rock_beat">Rock Beat</option>
+                            <option value="jazz_swing">Jazz Swing</option>
+                            <option value="bossanova">Bossa Nova</option>
+                            <option value="dangdut">Dangdut</option>
+                            <option value="keroncong">Keroncong</option>
+                        </select>
+                    </div>
+                    <div class="style-vol-row">
+                        <span class="control-label">VOL:</span>
+                        <div class="style-vol-bar">
+                            <div class="style-vol-fill" style="width: 70%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- KANAN: Pan, Tone, dll -->
+            <div class="panel-section right-panel">
+                <div class="panel-title">🎚️ TONE & PAN</div>
+                <div class="knobs-row">
+                    <div class="knob-group">
+                        <div class="knob" data-knob="pan" data-min="-50" data-max="50" data-value="0">
+                            <div class="knob-indicator"></div>
+                        </div>
+                        <div class="knob-label">PAN</div>
+                        <div class="knob-value" id="knobPanVal">C</div>
+                    </div>
+                    <div class="knob-group">
+                        <div class="knob" data-knob="tone" data-min="0" data-max="100" data-value="50">
+                            <div class="knob-indicator"></div>
+                        </div>
+                        <div class="knob-label">TONE</div>
+                        <div class="knob-value" id="knobToneVal">50</div>
+                    </div>
+                    <div class="knob-group">
+                        <div class="knob" data-knob="cutoff" data-min="0" data-max="100" data-value="80">
+                            <div class="knob-indicator"></div>
+                        </div>
+                        <div class="knob-label">CUTOFF</div>
+                        <div class="knob-value" id="knobCutoffVal">80</div>
+                    </div>
+                    <div class="knob-group">
+                        <div class="knob" data-knob="resonance" data-min="0" data-max="100" data-value="20">
+                            <div class="knob-indicator"></div>
+                        </div>
+                        <div class="knob-label">RESONANCE</div>
+                        <div class="knob-value" id="knobResonanceVal">20</div>
+                    </div>
+                </div>
+                <div class="mfx-controls">
+                    <span class="mfx-label">MFX:</span>
+                    <button class="mfx-btn" data-mfx="mfx1">MFX 1</button>
+                    <button class="mfx-btn" data-mfx="mfx2">MFX 2</button>
+                    <button class="mfx-btn" data-mfx="master">MASTER</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- TRANSPORT & MODE SECTION -->
+        <div class="transport-panel">
+            <div class="transport-section">
+                <div class="panel-title">⏯️ TRANSPORT</div>
+                <div class="transport-buttons">
+                    <button class="transport-btn" id="btnRewind" title="Rewind">⏪</button>
+                    <button class="transport-btn play-btn" id="btnPlay" title="Play">▶️</button>
+                    <button class="transport-btn" id="btnStop" title="Stop">⏹️</button>
+                    <button class="transport-btn rec-btn" id="btnRecord" title="Record">⏺️</button>
+                    <button class="transport-btn" id="btnFastForward" title="Forward">⏩</button>
+                    <button class="transport-btn" id="btnPause" title="Pause">⏸️</button>
+                </div>
+                <div class="transport-buttons">
+                    <button class="transport-btn small" id="btnFadeIn">FADE IN</button>
+                    <button class="transport-btn small" id="btnFadeOut">FADE OUT</button>
+                    <button class="transport-btn small" id="btnSyncStart">SYNC START</button>
+                    <button class="transport-btn small" id="btnSyncStop">SYNC STOP</button>
+                </div>
+            </div>
+            
+            <div class="transport-section">
+                <div class="panel-title">🎯 MODE</div>
+                <div class="mode-buttons">
+                    <button class="mode-btn active" data-mode="single">SINGLE</button>
+                    <button class="mode-btn" data-mode="fingered">FINGERED</button>
+                    <button class="mode-btn" data-mode="piano">PIANO</button>
+                    <button class="mode-btn" data-mode="chord">CHORD</button>
+                </div>
+            </div>
+            
+            <div class="transport-section">
+                <div class="panel-title">🎵 METRONOME</div>
+                <div class="metronome-controls">
+                    <button class="metro-btn" id="btnMetro">METRO</button>
+                    <button class="metro-btn" id="btnTap">TAP</button>
+                    <button class="metro-btn" id="btnSync">SYNC</button>
+                    <div class="tempo-display" id="tempoDisplay">120</div>
+                </div>
+                <div class="metronome-info">
+                    <span class="time-sig">4/4</span>
+                    <span class="metronome-beats">● ● ● ●</span>
+                    <span class="record-time" id="recordTime">00:00</span>
+                </div>
+            </div>
+
+            <div class="transport-section">
+                <div class="panel-title">🎙️ RECORDER</div>
+                <div class="recorder-tracks">
+                    <span class="track-label">Track:</span>
+                    <button class="track-btn" data-track="1">1</button>
+                    <button class="track-btn" data-track="2">2</button>
+                    <button class="track-btn" data-track="3">3</button>
+                    <button class="track-btn" data-track="4">4</button>
+                    <button class="track-btn" data-track="5">5</button>
+                </div>
+                <div class="recorder-actions">
+                    <button class="rec-action" id="btnRecStart">⏺️ REC</button>
+                    <button class="rec-action" id="btnRecStop">⏹ STOP</button>
+                    <button class="rec-action" id="btnRecSave">💾 SAVE</button>
+                    <button class="rec-action" id="btnRecExport">📤 EXPORT</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- VOICE & SPLIT/LAYER SECTION -->
+        <div class="voice-split-panel">
+            <div class="voice-panel">
+                <div class="panel-title">🎺 VOICE & INSTRUMENT</div>
+                <div class="voice-buttons">
+                    <button class="voice-btn active" data-voice="piano">🎹 PIANO</button>
+                    <button class="voice-btn" data-voice="organ">🎺 ORGAN</button>
+                    <button class="voice-btn" data-voice="strings">🎻 STRINGS</button>
+                    <button class="voice-btn" data-voice="brass">🎺 BRASS</button>
+                    <button class="voice-btn" data-voice="synth">🎛️ SYNTH</button>
+                    <button class="voice-btn" data-voice="world">🌏 WORLD</button>
+                    <button class="voice-btn" data-voice="drum">🥁 DRUM</button>
+                    <button class="voice-btn" data-voice="bass">🎸 BASS</button>
+                </div>
+                <div class="voice-info">
+                    <div class="voice-layer">
+                        <span class="layer-label">Layer 1:</span>
+                        <span class="layer-value" id="layer1">Grand Piano</span>
+                    </div>
+                    <div class="voice-layer">
+                        <span class="layer-label">Layer 2:</span>
+                        <span class="layer-value" id="layer2">Strings</span>
+                    </div>
+                    <div class="voice-layer">
+                        <span class="layer-label">Layer 3:</span>
+                        <span class="layer-value" id="layer3">Pad</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="split-layer-panel">
+                <div class="panel-title">🎯 SPLIT & LAYER</div>
+                <div class="split-controls">
+                    <div class="split-row">
+                        <span class="control-label">Split:</span>
+                        <button class="split-btn" id="splitOn">ON</button>
+                        <span class="split-point" id="splitPoint">C4</span>
+                    </div>
+                    <div class="layer-row">
+                        <span class="control-label">Upper:</span>
+                        <button class="layer-btn active" data-layer="r1">R1</button>
+                        <button class="layer-btn" data-layer="r2">R2</button>
+                        <button class="layer-btn" data-layer="r3">R3</button>
+                    </div>
+                    <div class="layer-row">
+                        <span class="control-label">Lower:</span>
+                        <button class="layer-btn" data-layer="l1">L1</button>
+                        <button class="layer-btn" data-layer="l2">L2</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DRUM PAD & REGISTRATION -->
+        <div class="pad-reg-panel">
+            <div class="drum-pad-panel">
+                <div class="panel-title">🥁 DRUM PAD</div>
+                <div class="drum-pads">
+                    <button class="pad-btn" data-pad="1">🥁1</button>
+                    <button class="pad-btn" data-pad="2">🥁2</button>
+                    <button class="pad-btn" data-pad="3">🥁3</button>
+                    <button class="pad-btn" data-pad="4">🥁4</button>
+                    <button class="pad-btn" data-pad="5">🥁5</button>
+                    <button class="pad-btn" data-pad="6">🥁6</button>
+                    <button class="pad-btn" data-pad="7">🥁7</button>
+                    <button class="pad-btn" data-pad="8">🥁8</button>
+                </div>
+                <div class="pad-labels">
+                    <span>KICK</span>
+                    <span>SNARE</span>
+                    <span>HI-HAT</span>
+                    <span>CRASH</span>
+                </div>
+                <div class="kit-selector">
+                    <span class="control-label">Kit:</span>
+                    <select id="drumKitSelect" class="kit-select">
+                        <option value="standard">Standard Kit</option>
+                        <option value="electronic">Electronic Kit</option>
+                        <option value="acoustic">Acoustic Kit</option>
+                        <option value="world">World Percussion</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="registration-panel">
+                <div class="panel-title">💾 REGISTRATION MEMORY</div>
+                <div class="reg-buttons">
+                    <button class="reg-btn" data-reg="1">1</button>
+                    <button class="reg-btn" data-reg="2">2</button>
+                    <button class="reg-btn" data-reg="3">3</button>
+                    <button class="reg-btn" data-reg="4">4</button>
+                    <button class="reg-btn" data-reg="5">5</button>
+                    <button class="reg-btn" data-reg="6">6</button>
+                    <button class="reg-btn" data-reg="7">7</button>
+                    <button class="reg-btn" data-reg="8">8</button>
+                </div>
+                <div class="bank-row">
+                    <span class="control-label">Bank:</span>
+                    <button class="bank-btn" id="bankPrev">◀</button>
+                    <span class="bank-display" id="bankDisplay">01</span>
+                    <button class="bank-btn" id="bankNext">▶</button>
+                </div>
+                <div class="ots-row">
+                    <span class="control-label">OTS:</span>
+                    <button class="ots-btn" data-ots="1">1</button>
+                    <button class="ots-btn" data-ots="2">2</button>
+                    <button class="ots-btn" data-ots="3">3</button>
+                    <button class="ots-btn" data-ots="4">4</button>
+                </div>
+                <div class="reg-actions">
+                    <button class="reg-action" id="regSave">SAVE</button>
+                    <button class="reg-action" id="regLoad">LOAD</button>
+                    <button class="reg-action" id="regInit">INIT</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ARP, AI, EFFECTS, PERFORMANCE -->
+        <div class="arp-ai-fx-panel">
+            <div class="arp-section">
+                <div class="panel-title">🎼 ARPEGGIATOR</div>
+                <div class="arp-controls">
+                    <button class="arp-toggle" id="btnArpOn">ON/OFF</button>
+                    <select id="arpType" class="arp-select">
+                        <option value="up">UP</option>
+                        <option value="down">DOWN</option>
+                        <option value="updown">UP-DOWN</option>
+                        <option value="random">RANDOM</option>
+                    </select>
+                    <select id="arpRate" class="arp-select">
+                        <option value="1/4">1/4</option>
+                        <option value="1/8" selected>1/8</option>
+                        <option value="1/16">1/16</option>
+                        <option value="1/32">1/32</option>
+                    </select>
+                    <select id="arpOctave" class="arp-select">
+                        <option value="1">Oct 1</option>
+                        <option value="2">Oct 2</option>
+                        <option value="3">Oct 3</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="ai-section">
+                <div class="panel-title">🤖 AI ASSISTANT</div>
+                <div class="ai-buttons">
+                    <button class="ai-btn" id="btnAICompose">🎵 COMPOSE</button>
+                    <button class="ai-btn" id="btnAIHarmonize">🎶 HARMONIZE</button>
+                    <button class="ai-btn" id="btnAIImprovise">🎷 IMPROVISE</button>
+                    <button class="ai-btn" id="btnAISuggest">💡 SUGGEST</button>
+                </div>
+            </div>
+
+            <div class="effects-section">
+                <div class="panel-title">🎛️ EFFECTS (MFX)</div>
+                <div class="fx-buttons">
+                    <button class="fx-btn" data-fx="chorus">CHORUS</button>
+                    <button class="fx-btn" data-fx="flanger">FLANGER</button>
+                    <button class="fx-btn" data-fx="phaser">PHASER</button>
+                    <button class="fx-btn" data-fx="tremolo">TREMOLO</button>
+                    <button class="fx-btn" data-fx="distortion">DISTORT</button>
+                    <button class="fx-btn" data-fx="rotary">ROTARY</button>
+                    <button class="fx-btn" data-fx="compressor">COMPRESSOR</button>
+                </div>
+            </div>
+
+            <div class="performance-section">
+                <div class="panel-title">🎬 PERFORMANCE</div>
+                <div class="scene-buttons">
+                    <button class="scene-btn" data-scene="1">SCENE 1</button>
+                    <button class="scene-btn" data-scene="2">SCENE 2</button>
+                    <button class="scene-btn" data-scene="3">SCENE 3</button>
+                </div>
+                <div class="scene-actions">
+                    <button class="scene-action" id="sceneSave">SAVE SCENE</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- KEYBOARD SECTION -->
+        <div class="keyboard-section">
+            <div class="keyboard-header">
+                <span class="keyboard-title">🎹 KEYBOARD 20 NADA (E2 - A7)</span>
+                <span class="keyboard-info-right">A4 = 440 Hz · Rasio: 3^(1/20) ≈ 1.056467</span>
+            </div>
+            <div id="keyboard-container">
+                <div id="keyboard"></div>
+            </div>
+            <div class="pitch-display">
+                <span>Nada: <strong id="currentNote">-</strong></span>
+                <span>Frekuensi: <strong id="currentFreq">-</strong> Hz</span>
+                <span>Oktaf: <strong id="currentOctave">-</strong></span>
+                <span>Chord: <strong id="currentChord">-</strong></span>
+            </div>
+            <div class="keyboard-controls">
+                <div class="control-group">
+                    <label>Volume</label>
+                    <input type="range" id="volumeControl" min="0" max="1" step="0.01" value="0.7" />
+                </div>
+                <div class="control-group">
+                    <label>Reverb</label>
+                    <input type="range" id="reverbControl" min="0" max="1" step="0.01" value="0.3" />
+                </div>
+                <div class="control-group">
+                    <label>Waveform</label>
+                    <select id="waveformSelect">
+                        <option value="sine">Sine</option>
+                        <option value="square">Square</option>
+                        <option value="sawtooth">Sawtooth</option>
+                        <option value="triangle">Triangle</option>
+                    </select>
+                </div>
+                <div class="control-group">
+                    <label>Oktaf (QWERTY)</label>
+                    <select id="octaveSelect">
+                        <option value="2">Oktaf 2</option>
+                        <option value="3">Oktaf 3</option>
+                        <option value="4" selected>Oktaf 4</option>
+                        <option value="5">Oktaf 5</option>
+                        <option value="6">Oktaf 6</option>
+                        <option value="7">Oktaf 7</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- WHEELS & PEDAL -->
+        <div class="wheels-panel">
+            <div class="wheel-group">
+                <div class="wheel-label">PITCH BEND</div>
+                <div class="pitch-wheel" id="pitchWheel">
+                    <div class="wheel-handle"></div>
+                </div>
+            </div>
+            <div class="wheel-group">
+                <div class="wheel-label">MODULATION</div>
+                <div class="mod-wheel" id="modWheel">
+                    <div class="wheel-handle"></div>
+                </div>
+            </div>
+            <div class="wheel-group">
+                <div class="wheel-label">SUSTAIN</div>
+                <button class="sustain-btn" id="btnSustain">PEDAL</button>
+            </div>
+            <div class="wheel-group">
+                <div class="wheel-label">OCTAVE</div>
+                <div class="octave-shift">
+                    <button class="oct-btn" id="btnOctDown">-</button>
+                    <span class="oct-display" id="octDisplay">4</span>
+                    <button class="oct-btn" id="octUp">+</button>
+                </div>
+            </div>
+            <div class="wheel-group">
+                <div class="wheel-label">PEDAL 1</div>
+                <button class="pedal-btn" id="btnPedal1">P1</button>
+            </div>
+            <div class="wheel-group">
+                <div class="wheel-label">PEDAL 2</div>
+                <button class="pedal-btn" id="btnPedal2">P2</button>
+            </div>
+            <div class="wheel-group">
+                <div class="wheel-label">EXPRESSION</div>
+                <button class="pedal-btn" id="btnExpression">EXP</button>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <footer class="app-footer">
+            <span>&copy; 2026 SONIC20VERSE · 20 Nada Menggema di Semesta</span>
+            <span class="footer-status" id="footerStatus">Status: Ready</span>
+            <span class="footer-info" id="footerCPU">CPU: 45%</span>
+            <span class="footer-info" id="footerLatency">Latency: 3ms</span>
+        </footer>
+    </div>
+
+    <!-- MODAL -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <div class="modal-body" id="modalBody"></div>
+        </div>
+    </div>
+    
+    <!-- ============================================ -->
+    <!-- JAVASCRIPT                                  -->
+    <!-- ============================================ -->
+    <script src="js/data/frequencies.js"></script>
+    <script src="js/audio/engine.js"></script>
+    <script src="js/audio/keyboard.js"></script>
+    <script src="js/features/styleEngine.js"></script>
+    <script src="js/features/voiceManager.js"></script>
+    <script src="js/features/arpeggiator.js"></script>
+    <script src="js/features/recorder.js"></script>
+    <script src="js/features/mixer.js"></script>
+    <script src="js/features/aiAssistant.js"></script>
+    <script src="js/ui/knobs.js"></script>
+    <script src="js/ui/wheels.js"></script>
+    <script src="js/ui/pads.js"></script>
+    <script src="js/ui/display.js"></script>
+    <script src="js/app.js"></script>
+    
+    <!-- LANDING PAGE HANDLER -->
+    <script>
+        (function() {
+            var landingPage = document.getElementById('landing-page');
+            var splashScreen = document.getElementById('splash-screen');
+            var appContainer = document.getElementById('app');
+            var btnMulai = document.getElementById('btnMulai');
+            var loaderBar = document.getElementById('loaderBar');
+            
+            function showSplash() {
+                if (landingPage) landingPage.classList.add('hidden');
+                if (splashScreen) splashScreen.classList.add('show');
+                
+                if (loaderBar) {
+                    loaderBar.style.width = '0%';
+                    var progress = 0;
+                    var interval = setInterval(function() {
+                        progress += Math.random() * 8 + 2;
+                        if (progress >= 100) {
+                            progress = 100;
+                            clearInterval(interval);
+                            loaderBar.style.width = '100%';
+                            setTimeout(hideSplashAndShowApp, 500);
+                        }
+                        loaderBar.style.width = progress + '%';
+                    }, 120);
+                } else {
+                    setTimeout(hideSplashAndShowApp, 2500);
+                }
+            }
+            
+            function hideSplashAndShowApp() {
+                if (splashScreen) {
+                    splashScreen.classList.remove('show');
+                    splashScreen.style.display = 'none';
+                }
+                if (appContainer) {
+                    appContainer.classList.add('show');
+                    appContainer.style.display = 'flex';
+                }
+                if (typeof initApp === 'function') initApp();
+            }
+            
+            if (btnMulai) {
+                var newBtn = btnMulai.cloneNode(true);
+                btnMulai.parentNode.replaceChild(newBtn, btnMulai);
+                newBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    showSplash();
+                });
+                newBtn.addEventListener('touchstart', function(e) {
+                    e.preventDefault();
+                    showSplash();
+                }, { passive: false });
+            }
+        })();
+    </script>
+</body>
+</html>
