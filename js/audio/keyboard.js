@@ -150,6 +150,13 @@ KeyboardRenderer.prototype.bindEvents = function() {
 
 KeyboardRenderer.prototype.activateKey = function(key) {
     if (!key) return;
+    
+    // Cek apakah power ON
+    if (typeof systemState !== 'undefined' && !systemState.powerOn) {
+        console.log('⚠️ Power OFF - tekan tombol POWER di header untuk menyalakan');
+        return;
+    }
+    
     var noteName = key.dataset.note;
     var freq = parseFloat(key.dataset.freq);
     var octave = key.dataset.octave;
