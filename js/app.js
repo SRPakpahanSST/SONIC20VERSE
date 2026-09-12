@@ -158,4 +158,125 @@ function setupTransport() {
     
     var btnStop = document.getElementById('btnStop');
     if (btnStop) {
-        btnStop.addEventListener('click', function()
+        btnStop.addEventListener('click', function() {
+            if (styleEngine) styleEngine.stop();
+            if (audioEngine) audioEngine.stopAll();
+            if (btnPlay) btnPlay.textContent = '▶️';
+        });
+    }
+    
+    var btnRecord = document.getElementById('btnRecord');
+    if (btnRecord) {
+        btnRecord.addEventListener('click', function() {
+            if (recorder) {
+                if (recorder.isRecording) {
+                    recorder.stopRecording();
+                } else {
+                    recorder.startRecording();
+                }
+            }
+        });
+    }
+}
+
+function setupStyleControls() {
+    var styleSelect = document.getElementById('styleSelect');
+    if (styleSelect && styleEngine) {
+        styleSelect.addEventListener('change', function() {
+            styleEngine.setStyle(this.value);
+        });
+    }
+    
+    ['styleIntro', 'styleMainA', 'styleMainB', 'styleMainC', 'styleFill', 'styleEnding'].forEach(function(id) {
+        var btn = document.getElementById(id);
+        if (btn) {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.style-btn').forEach(function(b) {
+                    if (b.id !== 'styleIntro' && b.id !== 'styleFill' && b.id !== 'styleEnding') {
+                        b.classList.remove('active');
+                    }
+                });
+                this.classList.add('active');
+                var section = id.replace('style', '').toLowerCase();
+                if (styleEngine) styleEngine.setSection(section);
+            });
+        }
+    });
+}
+
+function setupVoiceControls() {
+    document.querySelectorAll('.voice-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            document.querySelectorAll('.voice-btn').forEach(function(b) {
+                b.classList.remove('active');
+            });
+            this.classList.add('active');
+            var category = this.dataset.voice;
+            if (voiceManager) voiceManager.setCategory(category);
+        });
+    });
+}
+
+function setupAIEvents() {
+    var btnCompose = document.getElementById('btnAICompose');
+    if (btnCompose) {
+        btnCompose.addEventListener('click', function() {
+            if (aiAssistant) {
+                var melody = aiAssistant.compose('maqam_rast', 'happy');
+                aiAssistant.playMelody(melody);
+            }
+        });
+    }
+    
+    var btnHarmonize = document.getElementById('btnAIHarmonize');
+    if (btnHarmonize) {
+        btnHarmonize.addEventListener('click', function() {
+            console.log('🎶 Harmonize clicked');
+        });
+    }
+    
+    var btnImprovise = document.getElementById('btnAIImprovise');
+    if (btnImprovise) {
+        btnImprovise.addEventListener('click', function() {
+            if (aiAssistant) {
+                var impro = aiAssistant.improvise('I-IV-V-I');
+                aiAssistant.playMelody(impro);
+            }
+        });
+    }
+    
+    var btnSuggest = document.getElementById('btnAISuggest');
+    if (btnSuggest) {
+        btnSuggest.addEventListener('click', function() {
+            if (aiAssistant) {
+                var chord = aiAssistant.suggestChord([]);
+                if (displayManager) displayManager.updateChord(chord);
+            }
+        });
+    }
+}
+
+function setupClock() {
+    function updateClock() {
+        var now = new Date();
+        var hours = String(now.getHours()).padStart(2, '0');
+        var mins = String(now.getMinutes()).padStart(2, '0');
+        var clockEl = document.getElementById('statusClock');
+        if (clockEl) clockEl.textContent = '🕐 ' + hours + ':' + mins;
+    }
+    updateClock();
+    setInterval(updateClock, 60000);
+}
+
+// STARTUP
+document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(initApp, 300);
+});
+
+window.addEventListener('load', function() {
+    if (!keyboardRenderer || !keyboardRenderer.isRendered) {
+        initApp();
+    }
+});
+
+console.log('✅ app.js loaded');
