@@ -238,3 +238,385 @@ body {
     font-size: 1.8rem;
     cursor: pointer;
 }
+
+/* ============================================================
+   POWER BUTTON - REALISTIS
+   ============================================================ */
+.power-button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.power-button {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #2a3a5e, #0a1628);
+    border: 4px solid #3a4a6e;
+    color: #FFC107;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+    transition: all 0.3s ease;
+    box-shadow: 
+        0 8px 30px rgba(0,0,0,0.6),
+        inset 0 -4px 8px rgba(0,0,0,0.4),
+        inset 0 4px 8px rgba(255,255,255,0.1);
+    animation: powerPulse 2s ease-in-out infinite;
+}
+
+@keyframes powerPulse {
+    0%, 100% {
+        box-shadow: 
+            0 8px 30px rgba(0,0,0,0.6),
+            0 0 0 0 rgba(255,193,7,0.4),
+            inset 0 -4px 8px rgba(0,0,0,0.4),
+            inset 0 4px 8px rgba(255,255,255,0.1);
+    }
+    50% {
+        box-shadow: 
+            0 8px 30px rgba(0,0,0,0.6),
+            0 0 40px 10px rgba(255,193,7,0.6),
+            inset 0 -4px 8px rgba(0,0,0,0.4),
+            inset 0 4px 8px rgba(255,255,255,0.1);
+    }
+}
+
+.power-button:hover {
+    transform: scale(1.05);
+    color: #00ff88;
+    border-color: #00ff88;
+}
+
+.power-button:active {
+    transform: scale(0.95);
+    box-shadow: 
+        0 2px 10px rgba(0,0,0,0.8),
+        inset 0 4px 8px rgba(0,0,0,0.6);
+}
+
+.power-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.power-text {
+    font-size: 0.7rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: inherit;
+}
+
+.power-led {
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #333;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.8);
+}
+
+.power-button.on .power-led {
+    background: #00ff88;
+    box-shadow: 0 0 15px rgba(0,255,136,0.8);
+}
+
+.power-hint {
+    font-size: 0.75rem;
+    color: #8899aa;
+    text-align: center;
+    animation: hintBlink 2s ease-in-out infinite;
+}
+
+@keyframes hintBlink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* ============================================================
+   BOOT SCREEN
+   ============================================================ */
+.boot-screen {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: #0a0e17;
+    z-index: 999997;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.boot-screen.show {
+    display: flex;
+    opacity: 1;
+}
+
+.boot-content {
+    text-align: center;
+    max-width: 500px;
+    width: 90%;
+    padding: 2rem;
+}
+
+.boot-logo {
+    margin-bottom: 1rem;
+    animation: bootLogoSpin 2s ease-out;
+}
+
+@keyframes bootLogoSpin {
+    from { transform: scale(0) rotate(-180deg); opacity: 0; }
+    to { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+.boot-title {
+    font-size: 2rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, #2196F3, #E91E63);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 2px;
+    margin-bottom: 2rem;
+}
+
+.boot-progress-container {
+    width: 100%;
+    height: 8px;
+    background: #1a2332;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+
+.boot-progress-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #2196F3, #00ff88, #E91E63);
+    border-radius: 4px;
+    transition: width 0.3s ease;
+    box-shadow: 0 0 15px rgba(0,255,136,0.5);
+}
+
+.boot-status {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: #00ff88;
+    margin-bottom: 1rem;
+    min-height: 20px;
+}
+
+.boot-log {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: #4a9eff;
+    text-align: left;
+    max-height: 150px;
+    overflow-y: auto;
+    padding: 0.5rem;
+    background: rgba(0,0,0,0.3);
+    border-radius: 4px;
+    border: 1px solid #1a3a5e;
+}
+
+.boot-log div {
+    margin: 0.1rem 0;
+    animation: logFadeIn 0.3s ease;
+}
+
+@keyframes logFadeIn {
+    from { opacity: 0; transform: translateX(-10px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+/* ============================================================
+   HOME SCREEN
+   ============================================================ */
+.home-screen {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(180deg, #0a0e17 0%, #0F3460 100%);
+    z-index: 999996;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 2rem;
+    overflow-y: auto;
+}
+
+.home-screen.show {
+    display: flex;
+}
+
+.home-content {
+    text-align: center;
+    max-width: 500px;
+    width: 100%;
+}
+
+.home-header {
+    margin-bottom: 2rem;
+}
+
+.home-logo {
+    margin-bottom: 0.5rem;
+    animation: homeLogoFloat 3s ease-in-out infinite;
+}
+
+@keyframes homeLogoFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.home-title {
+    font-size: 2rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, #2196F3, #E91E63);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 2px;
+}
+
+.home-subtitle {
+    font-size: 0.9rem;
+    color: #FFC107;
+    letter-spacing: 3px;
+    margin-top: 0.25rem;
+}
+
+.home-status {
+    background: rgba(0,0,0,0.3);
+    border: 1px solid #1a3a5e;
+    border-radius: 10px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+.status-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.4rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    font-size: 0.8rem;
+}
+
+.status-row:last-child {
+    border-bottom: none;
+}
+
+.status-label {
+    color: #8899aa;
+    font-weight: 600;
+}
+
+.status-value {
+    color: #4a9eff;
+    font-family: 'Courier New', monospace;
+    font-weight: 700;
+}
+
+.status-value.ready {
+    color: #00ff88;
+}
+
+.status-value.locked {
+    color: #FFC107;
+}
+
+.home-actions {
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+    margin-bottom: 1.5rem;
+}
+
+.home-btn {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+.home-btn.primary {
+    background: linear-gradient(135deg, #2196F3, #E91E63);
+    color: white;
+    box-shadow: 0 4px 20px rgba(33,150,243,0.4);
+}
+
+.home-btn.primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(33,150,243,0.6);
+}
+
+.home-btn.secondary {
+    background: transparent;
+    color: #00ff88;
+    border: 2px solid #00ff88;
+}
+
+.home-btn.secondary:hover {
+    background: #00ff88;
+    color: #0a1628;
+    transform: translateY(-3px);
+}
+
+.home-tips {
+    background: rgba(255,193,7,0.1);
+    border-left: 3px solid #FFC107;
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    color: #FFC107;
+    text-align: left;
+    margin-bottom: 1.5rem;
+}
+
+.home-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+    border-top: 1px solid #1a3a5e;
+}
+
+.power-off-btn {
+    padding: 0.5rem 1rem;
+    background: transparent;
+    border: 1px solid #a04040;
+    border-radius: 20px;
+    color: #a04040;
+    font-size: 0.75rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.power-off-btn:hover {
+    background: #a04040;
+    color: #fff;
+}
+
+.home-version {
+    font-size: 0.7rem;
+    color: #556677;
+}
